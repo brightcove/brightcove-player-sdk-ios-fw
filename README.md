@@ -1,4 +1,9 @@
-# Freewheel Plugin for Brightcove Player SDK for iOS, version 1.0.2.145
+# Freewheel Plugin for Brightcove Player SDK for iOS, version 1.0.3.157
+
+Requirements
+===========
+
+This plugin supports iOS 6.1+.
 
 Installation
 ===========
@@ -29,7 +34,7 @@ Quick Start
 ===========
 Playing video with the Brightcove Player SDK for iOS with Freewheel ads:
 
-```objc
+```
 
     @property (nonatomic, strong) id<FWAdManager> adManager;
     @property (nonatomic, weak) IBOutlet UIView *videoContainerView;
@@ -93,7 +98,7 @@ Customizing Plugin Behavior
 ===========
 You can customize default plugin behavior by creating an instance of `BCOVFWSessionProviderOptions` and overriding the default properties. To use a `BCOVFWSessionProviderOptions` options instance, you need to create the `BCOVFWSessionProvider` using `-[BCOVSDKManager createFWSessionProviderWithAdContextPolicy:upstreamSessionProvider:options:]`.
 
-```objc
+```
 
     BCOVFWSessionProviderOptions *options = [[BCOVFWSessionProviderOptions alloc] init];
     options.cuePointProgressPolicy = [BCOVCuePointProgressPolicy progressPolicyProcessingCuePoints:BCOVProgressPolicyProcessFinalCuePoint resumingPlaybackFrom:BCOVProgressPolicyResumeFromContentPlayhead ignoringPreviouslyProcessedCuePoints:YES];

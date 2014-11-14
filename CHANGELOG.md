@@ -1,3 +1,11 @@
+# 1.0.3
+### Breaking Changes
+* iOS 6 is still deprecated in this release. We have not removed support yet.  iOS 6.x currently accounts for ~2% of global SDK traffic.
+* This release has been built with Xcode 6. In Xcode 6, Apple removed armv7s from the list of standard architectures. This release no longer includes an armv7s architecture slice.
+
+### Additions and Improvements
+* Internal Improvements
+
 # 1.0.2
 
 ### Breaking Changes
