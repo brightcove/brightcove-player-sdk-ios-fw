@@ -1,3 +1,8 @@
+# 1.0.4
+### Additions and Improvements
+* Internal Improvements.
+* You must use the Brightcove Player SDK for iOS version 4.4.0+.
+
 # 1.0.3
 ### Breaking Changes
 * iOS 6 is still deprecated in this release. We have not removed support yet.  iOS 6.x currently accounts for ~2% of global SDK traffic.
