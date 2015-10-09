@@ -17,8 +17,52 @@
  */
 @interface BCOVPlayerSDKManager (BCOVFWAdditions)
 
+/**
+ * Creates a playback controller with the given adContextPolicy and viewStrategy.
+ * This method uses a Freewheel plugin with its default settings. To customize
+ * Freewheel plugin, use 
+ * createFWSessionProviderWithAdContextPolicy:upstreamSessionProvider:options.
+ *
+ * @param adContextPolicy The block that constructs the FWAdContext to be used per video.
+ * @param strategy        The view strategy for the playbackController.view property.
+ *
+ * @return A playback controller.
+ */
 - (id<BCOVPlaybackController>)createFWPlaybackControllerWithAdContextPolicy:(BCOVFWSessionProviderAdContextPolicy)adContextPolicy viewStrategy:(BCOVPlaybackControllerViewStrategy)strategy;
 
+/**
+ * Creates a session provider that can be used to create a playback controller.
+ *
+ *  @param adContextPolicy The block that constructs the FWAdContext to be used per video.
+ *  @param provider        Another provider to be used, if nil, default will be used.
+ *  @param options         The options to customize the Freewheel plugin.
+ *
+ *  @return A session provider.
+ */
 - (id<BCOVPlaybackSessionProvider>)createFWSessionProviderWithAdContextPolicy:(BCOVFWSessionProviderAdContextPolicy)adContextPolicy upstreamSessionProvider:(id<BCOVPlaybackSessionProvider>)provider options:(BCOVFWSessionProviderOptions *)options;
+
+@end
+
+/**
+ * Freewheel specific methods for the plugin context.
+ */
+@interface BCOVSessionProviderExtension (BCOVFWAdditions)
+
+/**
+ * If Freewheel has requested that the content video be in the paused state,
+ * this will be YES. Otherwise it will be NO.
+ */
+@property (nonatomic, assign, readonly, getter=isPausedOnFreewheelsRequest) BOOL pausedOnFreewheelsRequest;
+
+/**
+ * Plays the video and updates FreeWheel with a video state of FW_VIDEO_STATE_PLAYING.
+ * This method will only play the video if isPausedOnFreewheelsRequest returns NO.
+ */
+- (void)fw_play;
+
+/**
+ * Pauses the video and updates FreeWheel with a video state of FW_VIDEO_STATE_PAUSED.
+ */
+- (void)fw_pause;
 
 @end

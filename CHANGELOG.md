@@ -1,3 +1,13 @@
+# 1.1.0
+### Breaking Changes
+* **Important: Please read "Playing and Pausing" section of README.md**
+* We now wait to call the ad Context policy until the duration of the AVPlayer is known. Previous to this change, we would call the block as soon as we could, which may have included a valid duration. Although documented, this was confusing, and probably not what you would expect. Although we do not recommend it, if you need the old behavior, please see the README.md on how to disable `waitForAVPlayerDuration`.
+
+### Additions and Improvements
+* Updated README.md for more information about plugin customization.
+* Add the ability to preload slots. See README.md for more information.
+* Added `session.providerExtentionisPausedOnFreewheelsRequest`, `-[session.providerExtention fw_pause]` and `-[session.providerExtention fw_play]`. See README.md for more information.
+
 # 1.0.4
 ### Additions and Improvements
 * Internal Improvements.

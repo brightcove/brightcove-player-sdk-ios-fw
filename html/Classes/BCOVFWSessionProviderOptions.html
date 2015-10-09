@@ -60,6 +60,12 @@
 		
 		<option value="//api/name/cuePointProgressPolicy">cuePointProgressPolicy</option>
 		
+		<option value="//api/name/preloadSlots">preloadSlots</option>
+		
+		<option value="//api/name/timeBeforeAdToPreload">timeBeforeAdToPreload</option>
+		
+		<option value="//api/name/waitForAVPlayerDuration">waitForAVPlayerDuration</option>
+		
 	</optgroup>
 	
 
@@ -114,6 +120,56 @@
 
 						<div class="task-list">
 							<div class="section-method">
+	<a name="//api/name/waitForAVPlayerDuration" title="waitForAVPlayerDuration"></a>
+	<h3 class="method-title"><code><a href="#//api/name/waitForAVPlayerDuration">&nbsp;&nbsp;waitForAVPlayerDuration</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Whether or not to wait for the AVPlayer item to report a duration before calling
+the adContextPolicy. When set to NO, the duration passed into the BCOVFWSessionProviderAdContextPolicy
+block may not be accurate. Defaults to Yes.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=shouldWaitForAVPlayerDuration) BOOL waitForAVPlayerDuration</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Whether or not to wait for the AVPlayer item to report a duration before calling
+the adContextPolicy. When set to NO, the duration passed into the BCOVFWSessionProviderAdContextPolicy
+block may not be accurate. Defaults to Yes.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCOVFWSessionProvider.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
 	<a name="//api/name/adTimeoutInterval" title="adTimeoutInterval"></a>
 	<h3 class="method-title"><code><a href="#//api/name/adTimeoutInterval">&nbsp;&nbsp;adTimeoutInterval</a></code>
 </h3>
@@ -126,7 +182,7 @@
 			
 			<div class="method-subsection brief-description">
 				<p>The number of seconds the session provider will wait for an ad request
-before delivering a session without using ads.</p>
+before delivering a session without using ads. Defaults to 3 seconds.</p>
 			</div>
 			
 		    
@@ -144,7 +200,7 @@ before delivering a session without using ads.</p>
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>The number of seconds the session provider will wait for an ad request
-before delivering a session without using ads.</p>
+before delivering a session without using ads. Defaults to 3 seconds.</p>
 			</div>
 			
 
@@ -174,7 +230,8 @@ before delivering a session without using ads.</p>
 			
 			<div class="method-subsection brief-description">
 				<p>A policy that determines whether a Freewheel ad should be played when a
-given cue point event occurs, and if so, where playback should resume.</p>
+given cue point event occurs, and if so, where playback should resume.
+Defaults to BCOVProgressPolicyProcessFinalCuePoint, BCOVProgressPolicyResumeFromContentPlayhead, YES.</p>
 			</div>
 			
 		    
@@ -192,7 +249,108 @@ given cue point event occurs, and if so, where playback should resume.</p>
 			<div class="method-subsection discussion-section">
 				<h4 class="method-subtitle">Discussion</h4>
 				<p>A policy that determines whether a Freewheel ad should be played when a
-given cue point event occurs, and if so, where playback should resume.</p>
+given cue point event occurs, and if so, where playback should resume.
+Defaults to BCOVProgressPolicyProcessFinalCuePoint, BCOVProgressPolicyResumeFromContentPlayhead, YES.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCOVFWSessionProvider.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/preloadSlots" title="preloadSlots"></a>
+	<h3 class="method-title"><code><a href="#//api/name/preloadSlots">&nbsp;&nbsp;preloadSlots</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Determines whether or not slots are preloaded so they are ready to play when hit.
+When set to YES, preroll slots will load as soon as possible. Midrolls slots
+will load X seconds before the slot is to be played, determined by <a href="#//api/name/timeBeforeAdToPreload">timeBeforeAdToPreload</a>.
+Defaults to NO.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign, getter=shouldPreloadSlots) BOOL preloadSlots</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Determines whether or not slots are preloaded so they are ready to play when hit.
+When set to YES, preroll slots will load as soon as possible. Midrolls slots
+will load X seconds before the slot is to be played, determined by <a href="#//api/name/timeBeforeAdToPreload">timeBeforeAdToPreload</a>.
+Defaults to NO.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">BCOVFWSessionProvider.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/timeBeforeAdToPreload" title="timeBeforeAdToPreload"></a>
+	<h3 class="method-title"><code><a href="#//api/name/timeBeforeAdToPreload">&nbsp;&nbsp;timeBeforeAdToPreload</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>If slot preloading is enabled, this is the amount of seconds before the ad to
+preload it. Defaults to 10 seconds.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) NSTimeInterval timeBeforeAdToPreload</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>If slot preloading is enabled, this is the amount of seconds before the ad to
+preload it. Defaults to 10 seconds.</p>
 			</div>
 			
 
@@ -222,7 +380,7 @@ given cue point event occurs, and if so, where playback should resume.</p>
 				<footer>
 					<div class="footer-copyright">
 						
-						<p class="copyright">Copyright &copy; 2015 Brightcove. All rights reserved. Updated: 2015-08-19</p>
+						<p class="copyright">Copyright &copy; 2015 Brightcove. All rights reserved. Updated: 2015-10-08</p>
 						
 						
 						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>

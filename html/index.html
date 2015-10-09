@@ -44,11 +44,11 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>Freewheel Plugin for Brightcove Player SDK for iOS, version 1.0.4.200</h1>
+						<h1>Freewheel Plugin for Brightcove Player SDK for iOS, version 1.1.0.213</h1>
 
 <h1>Requirements</h1>
 
-<p>This plugin supports iOS 6.1+.</p>
+<p>This plugin supports iOS 7.0+.</p>
 
 <h1>Installation</h1>
 
@@ -72,7 +72,7 @@
 <li>On the &ldquo;Build Settings&rdquo; tab of your application target:
 
 <ul>
-<li>Ensure that BCOVIFW headers are in your application&rsquo;s &ldquo;Header Search Path&rdquo;.</li>
+<li>Ensure that BCOVFW headers are in your application&rsquo;s &ldquo;Header Search Path&rdquo;.</li>
 <li>Ensure that <code>-ObjC</code> has been added to the &ldquo;Other Linker Flags&rdquo; build setting.</li>
 </ul>
 </li>
@@ -84,8 +84,7 @@
 
 <p>Playing video with the Brightcove Player SDK for iOS with Freewheel ads:</p>
 
-<pre><code>
-    @property (nonatomic, strong) id&lt;FWAdManager&gt; adManager;
+<pre><code>    @property (nonatomic, strong) id&lt;FWAdManager&gt; adManager;
     @property (nonatomic, weak) IBOutlet UIView *videoContainerView;
 
     -(void)setup
@@ -147,17 +146,57 @@
 
 <p>If you have questions or need help, we have a support forum for Brightcove&rsquo;s native Player SDKs at <a href="https://groups.google.com/forum/">https://groups.google.com/forum/</a>#!forum/brightcove-native-player-sdks . If you are unsure what your ad settings are or have questions regarding what FWContext and other FW classes, please contact Freewheel support.</p>
 
+<h1>Playing and Pausing</h1>
+
+<p>The Brightcove Freewheel Plugin will pause and play the content video automatically when playing a <code>FWSlot</code> Ad. However, in order for this to work reliably, our Freewheel plugin must provide accurate video state information to the Freewheel library. In order to ensure accurate video state information, we recommend the following options:</p>
+
+<ul>
+<li>Using <code>[BCOVPlaybackController pause]</code> and <code>[BCOVPlaybackController play]</code> will update Freewheel with the correct state automatically.</li>
+<li>Using <code>[BCOVPlaybackSession.providerExtension fw_pause]</code> and  <code>[BCOVPlaybackSession.providerExtension fw_play]</code> will update Freewheel with the correct state automatically.</li>
+<li>Manually update the <code>[FWContext setVideoState:]</code> with either <code>FW_VIDEO_STATE_PLAYING</code> or <code>FW_VIDEO_STATE_PAUSED</code> anytime you call play/pause on the AVPlayer directly. Example:</li>
+</ul>
+
+
+<pre><code>    [self.adContext setVideoState:FW_VIDEO_STATE_PAUSED];
+    [session.player pause];
+</code></pre>
+
+<p>In addition to providing accurate video state, it is important not to accidentally play content while an ad is playing. In order to prevent this, we recommend the following:</p>
+
+<ul>
+<li>Using <code>[BCOVPlaybackController pause]</code> and <code>[BCOVPlaybackController play]</code> will not call &lsquo;[AVPlayer play]&rsquo; when an ad is playing.</li>
+<li>Using <code>-[BCOVPlaybackSession.providerExtension fw_pause]</code> and  <code>-[BCOVPlaybackSession.providerExtension fw_play]</code> will not call &lsquo;[AVPlayer play]&rsquo; when an ad is playing.</li>
+<li>If using the AVPlayer directly, check <code>BCOVPlaybackSession.providerExtension.isPausedOnFreewheelsRequest</code> to determine whether Freewheel has requested a pause in content, and disables calls to <code>[AVPlayer play]</code>.</li>
+<li>Register listeners with <code>NSNotificationCenter</code> for <code>FW_TIME_POSITION_CLASS_PREROLL</code> and <code>FW_NOTIFICATION_SLOT_ENDED</code>. You will need to verify that the slot has a time position class of <code>FW_TIME_POSITION_CLASS_MIDROLL</code>, <code>FW_TIME_POSITION_CLASS_MIDROLL</code>, or <code>FW_TIME_POSITION_CLASS_POSTROLL</code>. Keep track of when a slot is playing, and disables calls to <code>[AVPlayer play]</code>.</li>
+</ul>
+
+
 <h1>Customizing Plugin Behavior</h1>
 
 <p>You can customize default plugin behavior by creating an instance of <code>BCOVFWSessionProviderOptions</code> and overriding the default properties. To use a <code>BCOVFWSessionProviderOptions</code> options instance, you need to create the <code>BCOVFWSessionProvider</code> using <code>[BCOVSDKManager createFWSessionProviderWithAdContextPolicy:upstreamSessionProvider:options:]</code>.</p>
 
-<pre><code>
-    BCOVFWSessionProviderOptions *options = [[BCOVFWSessionProviderOptions alloc] init];
+<pre><code>    BCOVFWSessionProviderOptions *options = [[BCOVFWSessionProviderOptions alloc] init];
     options.cuePointProgressPolicy = [BCOVCuePointProgressPolicy progressPolicyProcessingCuePoints:BCOVProgressPolicyProcessFinalCuePoint resumingPlaybackFrom:BCOVProgressPolicyResumeFromContentPlayhead ignoringPreviouslyProcessedCuePoints:YES];
     id&lt;BCOVPlaybackSessionProvider&gt; sessionProvider = [playbackManager createFWSessionProviderWithAdContextPolicy:[self adContextPolicy] upstreamSessionProvider:nil options:options];
 
     id&lt;BCOVPlaybackController&gt; playbackController = [playbackManager createPlaybackControllerWithSessionProvider:sessionProvider viewStrategy:nil];
 </code></pre>
+
+<h2>Preloading Slots</h2>
+
+<p>Depending on network conditions, there can be a delay in the time it takes for ads to play, once the ad position has been hit. In order to improve ad performance, it is possible to preload the Freewheel slots. To turn on preloading, enable <code>preloadSlots</code> on <code>BCOVFWSessionProviderOptions</code>.</p>
+
+<p>When enabled, pre roll slots will be loaded as soon as possible. For midrolls, slots will be preloaded a configurable amount of seconds, determined by <code>timeBeforeAdToPreload</code> on <code>BCOVFWSessionProviderOptions</code>.</p>
+
+<h2>Using an accurate duration</h2>
+
+<p>Depending on your Freewheel configuration, supplying an accurate duration in calls to <code>setVideoId:</code> is the difference between receiving the correct number of midrolls or not.</p>
+
+<p>By default, the SDK will wait to call the <code>BCOVFWSessionProviderAdContextPolicy</code> until the AVPlayerItem has an accurate duration, and this value will be provided to the block call. If you do not want to wait until the AVPlayerItem duration is ready and you have this information available from another source (like the BCOVVideo/BCOVSource properties or your own CMS), <code>waitForAVPlayerDuration</code> can be used to disable waiting.</p>
+
+<h2>Handling Seeks</h2>
+
+<p>When seeking over multiple ad pods (like two midrolls slots, at different positions), the SDK provides a convenience mechanism to determine which pods get played. This can be modified by changing the default <code>BCOVCuePointProgressPolicy</code> on <code>BCOVFWSessionProviderOptions</code>. For more information on the <code>BCOVCuePointProgressPolicy</code>, please consult the <code>BCOVFWSessionProvider.h</code> file.</p>
 						
 						
 					</div>
@@ -191,6 +230,8 @@
 								
 								<li><a href="Categories/BCOVPlayerSDKManager+BCOVFWAdditions.html">BCOVPlayerSDKManager(BCOVFWAdditions)</a></li>
 								
+								<li><a href="Categories/BCOVSessionProviderExtension+BCOVFWAdditions.html">BCOVSessionProviderExtension(BCOVFWAdditions)</a></li>
+								
 							</ul>
 							
 						</div>
@@ -200,7 +241,7 @@
 					<footer>
 						<div class="footer-copyright">
 							
-							<p class="copyright">Copyright &copy; 2015 Brightcove. All rights reserved. Updated: 2015-08-19</p>
+							<p class="copyright">Copyright &copy; 2015 Brightcove. All rights reserved. Updated: 2015-10-08</p>
 							
 							
 							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1333)</a>.</p>
