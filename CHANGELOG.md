@@ -1,3 +1,7 @@
+# 1.1.1
+### Additions and Improvements
+* Send `kBCOVPlaybackSessionLifecycleEventWillPauseForAd` on the lifecycle delegate method when pausing for an Ad.
+
 # 1.1.0
 ### Breaking Changes
 * **Important: Please read "Playing and Pausing" section of README.md**
