@@ -1,29 +1,47 @@
-# Freewheel Plugin for Brightcove Player SDK for iOS, version 1.1.1.220
+# Freewheel Plugin for Brightcove Player SDK for iOS, version 2.0.0.238
 
-Requirements
-===========
-
-This plugin supports iOS 7.0+.
+Supported Platforms
+===================
+iOS 7.0 and above.
 
 Installation
 ===========
 
-You can use [Cocoapods][cocoapods] to add the Freewheel Plugin for Brightcove Player SDK to your project.  You can find the latest `Brightcove-Player-SDK-FW` podspec [here][podspecs].  To use this spec, using Cocoapods 0.34.1+, add the following to the top of Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`.
+The Freewheel Plugin for Brightcove Player SDK provides a static library framework for installation. A dynamic framework will be added in the future when Freewheel releases a dylib version.
 
-The Freewheel SDK **is not** included in this pod.  You **must** manually add the Freewheel SDK AdManager.framework to your project. The pod will however add all the libraries required by this framework.
+CocoaPods
+--------------
+
+You can use [Cocoapods][cocoapods] to add the Freewheel Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-SDK-FW` podspec [here][podspecs]. To use this spec, add the following to the top of Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`. CocoaPods 0.39 or newer is required.
+
+The Freewheel SDK **is not** included in this pod.  You **must** manually add the Freewheel SDK AdManager.framework to your project. The pod will however add all the libraries required by AdManager.framework framework.
+
+Static Framework example:  
+
+    source 'https://github.com/CocoaPods/Specs.git'
+    source 'https://github.com/brightcove/BCOVSpecs.git'
+
+    pod 'Brightcove-Player-SDK-FW'
+    
+Manual
+--------------
 
 To add the Freewheel Plugin for Brightcove Player SDK to your project manually:
 
 1. Install the latest version of the [Brightcove Player SDK][bcovsdk].
-1. Download the latest zip'ed release of the plugin from our [release page][release].
-1. Add the contents of Library and Headers to the project.
-1. On the "Build Phases" tab of your application target, add the following to the "Link
+2. Download the latest zipped release of the plugin from our [release page][release].
+3. Add the 'BrightcoveFW.framework' to your project.
+4. On the "Build Settings" tab of your application target, ensure that the "Framework Search Paths" include the path to the framework. This should have been done automatically unless the framework is stored under a different root directory than your project.
+5. On the "Build Phases" tab of your application target, add the following to the "Link
     Binary With Libraries" phase:
-    * `libBCOVFW.a`
-1. On the "Build Settings" tab of your application target:
-    * Ensure that BCOVFW headers are in your application's "Header Search Path".
+    * `BrightcoveFW.framework`
+6. On the "Build Settings" tab of your application target:
     * Ensure that `-ObjC` has been added to the "Other Linker Flags" build setting.
-1. Install the Freewheel library, which must be retrieved from your Freewheel account.
+7. Install the Freewheel library, which must be retrieved from your Freewheel account.
+
+Imports
+--------------
+The Freewheel Plugin for Brightcove Player SDK can be imported into code a few different ways; `@import BrightcoveFW;`, `#import <BrightcoveFW/BrightcoveIMA.h>` or `#import <BrightcoveFW/[specific class].h>`.
 
 [bcovsdk]: https://github.com/brightcove/brightcove-player-sdk-ios
 [cocoapods]: http://cocoapods.org
@@ -93,25 +111,13 @@ Let's break this code down into steps, to make it a bit simpler to digest:
 
 If you have questions or need help, we have a support forum for Brightcove's native Player SDKs at https://groups.google.com/forum/#!forum/brightcove-native-player-sdks . If you are unsure what your ad settings are or have questions regarding what FWContext and other FW classes, please contact Freewheel support.
 
-Playing and Pausing
+Play and Pause
 ===========
-The Brightcove Freewheel Plugin will pause and play the content video automatically when playing a `FWSlot` Ad. However, in order for this to work reliably, our Freewheel plugin must provide accurate video state information to the Freewheel library. In order to ensure accurate video state information, we recommend the following options:
+The Brightcove Freewheel Plugin implements custom play and pause logic to ensure the smoothest possible ad experience. Therefore, you will need to make sure that you use the play method on the `BCOVPlaybackController` or the `-[BCOVSessionProviderExtension fw_play]` or `-[BCOVSessionProviderExtension fw_pause]` ([BCOVSessionProviderExtension][BCOVFWComponent]), and not the AVPlayer.  
 
-* Using `-[BCOVPlaybackController pause]` and `-[BCOVPlaybackController play]` will update Freewheel with the correct state automatically.
-* Using `-[BCOVPlaybackSession.providerExtension fw_pause]` and  `-[BCOVPlaybackSession.providerExtension fw_play]` will update Freewheel with the correct state automatically.
-* Manually update the `-[FWContext setVideoState:]` with either `FW_VIDEO_STATE_PLAYING` or `FW_VIDEO_STATE_PAUSED` anytime you call play/pause on the AVPlayer directly. Example:
+As an example, calling play for the first time on `BCOVPlaybackController` allows BCOVFW to process preroll ads without any of the content playing before the preroll. For more information on how BCOVFW overrides the default `BCOVPlaybackController` methods, please check out [BCOVSessionProviderExtension][BCOVFWComponent].
 
-```
-    [self.adContext setVideoState:FW_VIDEO_STATE_PAUSED];
-    [session.player pause];
-```
-
-In addition to providing accurate video state, it is important not to accidentally play content while an ad is playing. In order to prevent this, we recommend the following:
-
-* Using `-[BCOVPlaybackController pause]` and `-[BCOVPlaybackController play]` will not call '-[AVPlayer play]' when an ad is playing.
-* Using `-[BCOVPlaybackSession.providerExtension fw_pause]` and  `-[BCOVPlaybackSession.providerExtension fw_play]` will not call '-[AVPlayer play]' when an ad is playing.
-* If using the AVPlayer directly, check `BCOVPlaybackSession.providerExtension.isPausedOnFreewheelsRequest` to determine whether Freewheel has requested a pause in content, and disables calls to `-[AVPlayer play]`.
-* Register listeners with `NSNotificationCenter` for `FW_TIME_POSITION_CLASS_PREROLL` and `FW_NOTIFICATION_SLOT_ENDED`. You will need to verify that the slot has a time position class of `FW_TIME_POSITION_CLASS_MIDROLL`, `FW_TIME_POSITION_CLASS_MIDROLL`, or `FW_TIME_POSITION_CLASS_POSTROLL`. Keep track of when a slot is playing, and disables calls to `-[AVPlayer play]`.
+[BCOVFWComponent]: https://github.com/brightcove/brightcove-player-sdk-ios-fw/blob/master/Headers/BCOVFWComponent.h
 
 Customizing Plugin Behavior
 ===========

@@ -1,6 +1,6 @@
 //
 // BCOVFWSessionProvider.h
-// BCOVFW
+// BrightcoveFW
 //
 // Copyright (c) 2015 Brightcove, Inc. All rights reserved.
 // License: https://accounts.brightcove.com/en/terms-and-conditions
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BCOVPlayerSDK.h"
+#import <BrightcovePlayerSDK/BrightcovePlayerSDK.h>
 
 
 @protocol FWContext;

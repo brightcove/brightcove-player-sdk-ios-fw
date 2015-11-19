@@ -1,14 +1,15 @@
 //
 // BCOVFWComponent.h
-// BCOVFW
+// BrightcoveFW
 //
 // Copyright (c) 2015 Brightcove, Inc. All rights reserved.
 // License: https://accounts.brightcove.com/en/terms-and-conditions
 //
 
 #import <Foundation/Foundation.h>
+//#import "BCOVPlayerSDK.h"
+#import <BrightcovePlayerSDK/BrightcovePlayerSDK.h>
 
-#import "BCOVPlayerSDK.h"
 #import "BCOVFWSessionProvider.h"
 
 
@@ -57,6 +58,9 @@
 /**
  * Plays the video and updates FreeWheel with a video state of FW_VIDEO_STATE_PLAYING.
  * This method will only play the video if isPausedOnFreewheelsRequest returns NO.
+ *
+ * On first play, before playing content, the session will process all preroll ads before starting
+ * the content.
  */
 - (void)fw_play;
 
