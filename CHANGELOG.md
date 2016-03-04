@@ -1,3 +1,10 @@
+# 2.0.2
+### Additions and Improvements
+* Fixed a memory leak.
+* Fixed an issue where the ad:didProgressTo: delegate method was called even when the ad was paused.
+* Fixed an issue where the lifecycle event `kBCOVPlaybackSessionLifecycleEventWillPauseForAd` was not sent for post-rolls.
+* Fixed an issue where the lifecycle event `kBCOVPlaybackSessionLifecycleEventWillPauseForAd` was sent when going to the background when no ad was playing.
+
 # 2.0.1
 ### Additions and Improvements
 * Reformatted the framework's short version string to comply with App Store submission requirements.
