@@ -1,3 +1,8 @@
+# 2.1.0
+### Additions and Improvements
+* Internal improvements to support ad controls in the Brightcove PlayerUI.
+* You must use the Brightcove Player SDK for iOS version 5.1 or higher.
+
 # 2.0.2
 ### Additions and Improvements
 * Fixed a memory leak.

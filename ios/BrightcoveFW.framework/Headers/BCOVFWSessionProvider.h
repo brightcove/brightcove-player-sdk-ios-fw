@@ -17,9 +17,9 @@
 /**
  * @typedef BCOVFWSessionProviderAdContextPolicy
  *
- * Policy that returns a Freewheel context object for the given video and
+ * Policy that returns a FreeWheel context object for the given video and
  * source. Clients of the BCOVFW component must implement this policy to return
- * an appropriately-configured Freewheel context for each video/source/duration. The same
+ * an appropriately-configured FreeWheel context for each video/source/duration. The same
  * context object may be returned for all video/source combinations, if desired.
  *
  * The videoDuration in seconds is provided for convenience when calling setVideoAssetId: on
@@ -36,7 +36,7 @@ typedef id<FWContext> (^BCOVFWSessionProviderAdContextPolicy)(BCOVVideo *video, 
 
 /**
  * Session provider implementation that delivers playback sessions with support
- * for Freewheel ads.
+ * for FreeWheel ads.
  *
  * Instances of this class should not be created directly by clients of the
  * Brightcove Player SDK for iOS; instead use the `-[BCOVPlayerSDKManager createFWSessionProviderWithAdContextPolicy:upstreamSessionProvider:options:]`
@@ -66,7 +66,7 @@ typedef id<FWContext> (^BCOVFWSessionProviderAdContextPolicy)(BCOVVideo *video, 
 @property (nonatomic, assign) NSTimeInterval adTimeoutInterval;
 
 /**
- * A policy that determines whether a Freewheel ad should be played when a
+ * A policy that determines whether a FreeWheel ad should be played when a
  * given cue point event occurs, and if so, where playback should resume.
  * Defaults to BCOVProgressPolicyProcessFinalCuePoint, BCOVProgressPolicyResumeFromContentPlayhead, YES.
  */

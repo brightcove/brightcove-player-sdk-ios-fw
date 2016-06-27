@@ -20,8 +20,8 @@
 
 /**
  * Creates a playback controller with the given adContextPolicy and viewStrategy.
- * This method uses a Freewheel plugin with its default settings. To customize
- * Freewheel plugin, use 
+ * This method uses a FreeWheel plugin with its default settings. To customize
+ * FreeWheel plugin, use 
  * createFWSessionProviderWithAdContextPolicy:upstreamSessionProvider:options.
  *
  * @param adContextPolicy The block that constructs the FWAdContext to be used per video.
@@ -36,7 +36,7 @@
  *
  *  @param adContextPolicy The block that constructs the FWAdContext to be used per video.
  *  @param provider        Another provider to be used, if nil, default will be used.
- *  @param options         The options to customize the Freewheel plugin.
+ *  @param options         The options to customize the FreeWheel plugin.
  *
  *  @return A session provider.
  */
@@ -45,12 +45,12 @@
 @end
 
 /**
- * Freewheel specific methods for the plugin context.
+ * FreeWheel specific methods for the plugin context.
  */
 @interface BCOVSessionProviderExtension (BCOVFWAdditions)
 
 /**
- * If Freewheel has requested that the content video be in the paused state,
+ * If FreeWheel has requested that the content video be in the paused state,
  * this will be YES. Otherwise it will be NO.
  */
 @property (nonatomic, assign, readonly, getter=isPausedOnFreewheelsRequest) BOOL pausedOnFreewheelsRequest;

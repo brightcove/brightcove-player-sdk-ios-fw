@@ -6,15 +6,15 @@
 	<dict>
 		<key>Headers/BCOVFWComponent.h</key>
 		<data>
-		DY8IpWaWXYd9Kk1knENikjRWMkE=
+		nHBobaAw9dEOTE/5SutgU/9caPM=
 		</data>
 		<key>Headers/BCOVFWConstants.h</key>
 		<data>
-		prDyaqueyWj7XyNAZacXMy/3ISM=
+		jSO721e23PycF8SvGo/ABMkGuX0=
 		</data>
 		<key>Headers/BCOVFWSessionProvider.h</key>
 		<data>
-		FuWSkBvtWtR8I34tHMlCowJahzo=
+		UHBt0a33gLSsgv+CmCLUvM+0b9k=
 		</data>
 		<key>Headers/BrightcoveFW.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		qn0DGWskGjcvyCS69n7tZBkN88A=
+		Lg1OrbmN2CZp7wMp9m0e63r5v0w=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -32,25 +32,60 @@
 	<key>files2</key>
 	<dict>
 		<key>Headers/BCOVFWComponent.h</key>
-		<data>
-		DY8IpWaWXYd9Kk1knENikjRWMkE=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			nHBobaAw9dEOTE/5SutgU/9caPM=
+			</data>
+			<key>hash2</key>
+			<data>
+			TypnywcwCOvuJKYNeAwZIVyRHx7G4ZC1yE2I7angdGo=
+			</data>
+		</dict>
 		<key>Headers/BCOVFWConstants.h</key>
-		<data>
-		prDyaqueyWj7XyNAZacXMy/3ISM=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			jSO721e23PycF8SvGo/ABMkGuX0=
+			</data>
+			<key>hash2</key>
+			<data>
+			yjtU7C8awUiF/kXH8yeiLAJx/B4SXe/RLytkx3bFPQY=
+			</data>
+		</dict>
 		<key>Headers/BCOVFWSessionProvider.h</key>
-		<data>
-		FuWSkBvtWtR8I34tHMlCowJahzo=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			UHBt0a33gLSsgv+CmCLUvM+0b9k=
+			</data>
+			<key>hash2</key>
+			<data>
+			6p8oGy+McOhNEo0oTZ4f8a9TsdXqI06oDzCqoljVUAg=
+			</data>
+		</dict>
 		<key>Headers/BrightcoveFW.h</key>
-		<data>
-		1BIZzHzz4QkoLmZKwc1ZngDIi2s=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			1BIZzHzz4QkoLmZKwc1ZngDIi2s=
+			</data>
+			<key>hash2</key>
+			<data>
+			3pdRbwdhPhyJioyYrHAlkKyKS+BAsdPkl0dmUKkogR4=
+			</data>
+		</dict>
 		<key>Modules/module.modulemap</key>
-		<data>
-		7e+7etT/e1/2HS0h/NT3ZIL07+Q=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			7e+7etT/e1/2HS0h/NT3ZIL07+Q=
+			</data>
+			<key>hash2</key>
+			<data>
+			+9CwWLCgGzf3nlnESI7OCWvFFXoiQjC7vvVgltoXelc=
+			</data>
+		</dict>
 	</dict>
 	<key>rules</key>
 	<dict>

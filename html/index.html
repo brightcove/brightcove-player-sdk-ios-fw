@@ -44,7 +44,7 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>Freewheel Plugin for Brightcove Player SDK for iOS, version 2.0.2.259</h1>
+						<h1>FreeWheel Plugin for Brightcove Player SDK for iOS, version 2.1.0.284</h1>
 
 <h1>Supported Platforms</h1>
 
@@ -52,13 +52,13 @@
 
 <h1>Installation</h1>
 
-<p>The Freewheel Plugin for Brightcove Player SDK provides a static library framework for installation. A dynamic framework will be added in the future when Freewheel releases a dylib version.</p>
+<p>The FreeWheel Plugin for Brightcove Player SDK provides a static library framework for installation. A dynamic framework will be added in the future when FreeWheel releases a dylib version.</p>
 
 <h2>CocoaPods</h2>
 
-<p>You can use <a href="http://cocoapods.org">Cocoapods</a> to add the Freewheel Plugin for Brightcove Player SDK to your project. You can find the latest <code>Brightcove-Player-SDK-FW</code> podspec <a href="https://github.com/brightcove/BCOVSpecs/tree/master/Brightcove-Player-SDK-FW">here</a>. To use this spec, add the following to the top of Podfile: <code>source '</code>https://github.com/brightcove/BCOVSpecs.git'<code></code>. CocoaPods 0.39 or newer is required.</p>
+<p>You can use <a href="http://cocoapods.org">Cocoapods</a> to add the FreeWheel Plugin for Brightcove Player SDK to your project. You can find the latest <code>Brightcove-Player-SDK-FW</code> podspec <a href="https://github.com/brightcove/BCOVSpecs/tree/master/Brightcove-Player-SDK-FW">here</a>. To use this spec, add the following to the top of Podfile: <code>source '</code>https://github.com/brightcove/BCOVSpecs.git'<code></code>. CocoaPods 0.39 or newer is required.</p>
 
-<p>The Freewheel SDK <strong>is not</strong> included in this pod.  You <strong>must</strong> manually add the Freewheel SDK AdManager.framework to your project. The pod will however add all the libraries required by AdManager.framework framework.</p>
+<p>The FreeWheel SDK <strong>is not</strong> included in this pod.  You <strong>must</strong> manually add the FreeWheel SDK AdManager.framework to your project. The pod will however add all the libraries required by AdManager.framework framework.</p>
 
 <p>Static Framework example:</p>
 
@@ -70,7 +70,7 @@ pod 'Brightcove-Player-SDK-FW'
 
 <h2>Manual</h2>
 
-<p>To add the Freewheel Plugin for Brightcove Player SDK to your project manually:</p>
+<p>To add the FreeWheel Plugin for Brightcove Player SDK to your project manually:</p>
 
 <ol>
 <li>Install the latest version of the <a href="https://github.com/brightcove/brightcove-player-sdk-ios">Brightcove Player SDK</a>.</li>
@@ -90,17 +90,17 @@ pod 'Brightcove-Player-SDK-FW'
 <li>Ensure that <code>-ObjC</code> has been added to the &ldquo;Other Linker Flags&rdquo; build setting.</li>
 </ul>
 </li>
-<li>Install the Freewheel library, which must be retrieved from your Freewheel account.</li>
+<li>Install the FreeWheel library, which must be retrieved from your FreeWheel account.</li>
 </ol>
 
 
 <h2>Imports</h2>
 
-<p>The Freewheel Plugin for Brightcove Player SDK can be imported into code a few different ways; <code>@import BrightcoveFW;</code>, <code>#import &lt;BrightcoveFW/BrightcoveIMA.h&gt;</code> or <code>#import &lt;BrightcoveFW/[specific class].h&gt;</code>.</p>
+<p>The FreeWheel Plugin for Brightcove Player SDK can be imported into code a few different ways; <code>@import BrightcoveFW;</code>, <code>#import &lt;BrightcoveFW/BrightcoveIMA.h&gt;</code> or <code>#import &lt;BrightcoveFW/[specific class].h&gt;</code>.</p>
 
 <h1>Quick Start</h1>
 
-<p>Playing video with the Brightcove Player SDK for iOS with Freewheel ads:</p>
+<p>Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:</p>
 
 <pre><code>    @property (nonatomic, strong) id&lt;FWAdManager&gt; adManager;
     @property (nonatomic, weak) IBOutlet UIView *videoContainerView;
@@ -154,19 +154,19 @@ pod 'Brightcove-Player-SDK-FW'
 <p>Let&rsquo;s break this code down into steps, to make it a bit simpler to digest:</p>
 
 <ol>
-<li>You create the same ad manager that you would create if you were using Freewheel&rsquo;s iOS SDK directly, and this will be required later.</li>
+<li>You create the same ad manager that you would create if you were using FreeWheel&rsquo;s iOS SDK directly, and this will be required later.</li>
 <li>BCOVFW adds some category methods to BCOVPlaybackManager. The first of these is <code>-createFWPlaybackControllerWithAdContextPolicy:viewStrategy:</code>. Use this method to create your playback controller. Alternatively (if you are using more than one session provider), you can create a <a href="Classes/BCOVFWSessionProvider.html">BCOVFWSessionProvider</a> and pass that to the manager method that creates a playback controller with upstream session providers.*</li>
-<li>You create the same ad context that would create if you were using Freewheel&rsquo;s iOS SDK directly, using the manager created in step 1. This is where you would register for companion slots, turn on default ad controls, or any other settings you need to change. This block will get called before each new session is delivered.</li>
+<li>You create the same ad context that would create if you were using FreeWheel&rsquo;s iOS SDK directly, using the manager created in step 1. This is where you would register for companion slots, turn on default ad controls, or any other settings you need to change. This block will get called before each new session is delivered.</li>
 </ol>
 
 
 <p>* Note that BCOVFWSessionProvider is not tested for use with other advertising session providers, such as BCOVIMASessionProvider. Also note that BCOVFWSessionProvider should come after any other session providers in the chain passed to the manager when constructing the playback controller.</p>
 
-<p>If you have questions or need help, we have a support forum for Brightcove&rsquo;s native Player SDKs at <a href="https://groups.google.com/forum/">https://groups.google.com/forum/</a>#!forum/brightcove-native-player-sdks . If you are unsure what your ad settings are or have questions regarding what FWContext and other FW classes, please contact Freewheel support.</p>
+<p>If you have questions or need help, we have a support forum for Brightcove&rsquo;s native Player SDKs at <a href="https://groups.google.com/forum/">https://groups.google.com/forum/</a>#!forum/brightcove-native-player-sdks . If you are unsure what your ad settings are or have questions regarding what FWContext and other FW classes, please contact FreeWheel support.</p>
 
 <h1>Play and Pause</h1>
 
-<p>The Brightcove Freewheel Plugin implements custom play and pause logic to ensure the smoothest possible ad experience. Therefore, you will need to make sure that you use the play method on the <code>BCOVPlaybackController</code> or the <code>[BCOVSessionProviderExtension fw_play]</code> or <code>[BCOVSessionProviderExtension fw_pause]</code> (<a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw/blob/master/Headers/BCOVFWComponent.h">BCOVSessionProviderExtension</a>), and not the AVPlayer.</p>
+<p>The Brightcove FreeWheel Plugin implements custom play and pause logic to ensure the smoothest possible ad experience. Therefore, you will need to make sure that you use the play method on the <code>BCOVPlaybackController</code> or the <code>[BCOVSessionProviderExtension fw_play]</code> or <code>[BCOVSessionProviderExtension fw_pause]</code> (<a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw/blob/master/Headers/BCOVFWComponent.h">BCOVSessionProviderExtension</a>), and not the AVPlayer.</p>
 
 <p>As an example, calling play for the first time on <code>BCOVPlaybackController</code> allows BCOVFW to process preroll ads without any of the content playing before the preroll. For more information on how BCOVFW overrides the default <code>BCOVPlaybackController</code> methods, please check out <a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw/blob/master/Headers/BCOVFWComponent.h">BCOVSessionProviderExtension</a>.</p>
 
@@ -183,13 +183,13 @@ pod 'Brightcove-Player-SDK-FW'
 
 <h2>Preloading Slots</h2>
 
-<p>Depending on network conditions, there can be a delay in the time it takes for ads to play, once the ad position has been hit. In order to improve ad performance, it is possible to preload the Freewheel slots. To turn on preloading, enable <code>preloadSlots</code> on <a href="Classes/BCOVFWSessionProviderOptions.html"><code>BCOVFWSessionProviderOptions</code></a>.</p>
+<p>Depending on network conditions, there can be a delay in the time it takes for ads to play, once the ad position has been hit. In order to improve ad performance, it is possible to preload the FreeWheel slots. To turn on preloading, enable <code>preloadSlots</code> on <a href="Classes/BCOVFWSessionProviderOptions.html"><code>BCOVFWSessionProviderOptions</code></a>.</p>
 
 <p>When enabled, pre roll slots will be loaded as soon as possible. For midrolls, slots will be preloaded a configurable amount of seconds, determined by <code>timeBeforeAdToPreload</code> on <a href="Classes/BCOVFWSessionProviderOptions.html"><code>BCOVFWSessionProviderOptions</code></a>.</p>
 
 <h2>Using an accurate duration</h2>
 
-<p>Depending on your Freewheel configuration, supplying an accurate duration in calls to <code>setVideoId:</code> is the difference between receiving the correct number of midrolls or not.</p>
+<p>Depending on your FreeWheel configuration, supplying an accurate duration in calls to <code>setVideoId:</code> is the difference between receiving the correct number of midrolls or not.</p>
 
 <p>By default, the SDK will wait to call the <code>BCOVFWSessionProviderAdContextPolicy</code> until the AVPlayerItem has an accurate duration, and this value will be provided to the block call. If you do not want to wait until the AVPlayerItem duration is ready and you have this information available from another source (like the BCOVVideo/BCOVSource properties or your own CMS), <code>waitForAVPlayerDuration</code> can be used to disable waiting.</p>
 
@@ -240,7 +240,7 @@ pod 'Brightcove-Player-SDK-FW'
 					<footer>
 						<div class="footer-copyright">
 							
-							<p class="copyright">Copyright &copy; 2016 Brightcove. All rights reserved. Updated: 2016-03-04</p>
+							<p class="copyright">Copyright &copy; 2016 Brightcove. All rights reserved. Updated: 2016-06-16</p>
 							
 							
 							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
