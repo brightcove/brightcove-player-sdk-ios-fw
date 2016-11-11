@@ -1,7 +1,11 @@
+# 2.1.1
+### Additions and Improvements
+* Added `-seekWithoutAds:(CMTime)time completionHandler:(void (^)(BOOL finished))completion`. Use this method to resume playback at a specific `time` without forcing the user to watch ads scheduled before `time`. `-seekWithoutAds:completionHandler:` requires Brightcove Player SDK for iOS version 5.2.0 or higher. Refer to the README.md for sample code.
+
 # 2.1.0
 ### Additions and Improvements
 * Internal improvements to support ad controls in the Brightcove PlayerUI.
-* You must use the Brightcove Player SDK for iOS version 5.1 or higher.
+* Requires version 5.1.0 or higher of the Brightcove Player SDK.
 
 # 2.0.2
 ### Additions and Improvements

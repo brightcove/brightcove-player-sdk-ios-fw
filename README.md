@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 2.1.0.284
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 2.1.1.298
 
 Supported Platforms
 ===================
@@ -12,7 +12,7 @@ The FreeWheel Plugin for Brightcove Player SDK provides a static library framewo
 CocoaPods
 --------------
 
-You can use [Cocoapods][cocoapods] to add the FreeWheel Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-SDK-FW` podspec [here][podspecs]. To use this spec, add the following to the top of Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`. CocoaPods 0.39 or newer is required.
+You can use [CocoaPods][cocoapods] to add the FreeWheel Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-SDK-FW` podspec [here][podspecs]. To use this spec, add the following to the top of Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`. CocoaPods version 0.39.0 or higher is required.
 
 The FreeWheel SDK **is not** included in this pod.  You **must** manually add the FreeWheel SDK AdManager.framework to your project. The pod will however add all the libraries required by AdManager.framework framework.
 
@@ -41,7 +41,7 @@ To add the FreeWheel Plugin for Brightcove Player SDK to your project manually:
 
 Imports
 --------------
-The FreeWheel Plugin for Brightcove Player SDK can be imported into code a few different ways; `@import BrightcoveFW;`, `#import <BrightcoveFW/BrightcoveIMA.h>` or `#import <BrightcoveFW/[specific class].h>`.
+The FreeWheel Plugin for Brightcove Player SDK can be imported into code a few different ways; `@import BrightcoveFW;`, `#import <BrightcoveFW/BrightcoveFW.h>` or `#import <BrightcoveFW/[specific class].h>`.
 
 [bcovsdk]: https://github.com/brightcove/brightcove-player-sdk-ios
 [cocoapods]: http://cocoapods.org
@@ -65,9 +65,9 @@ Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:
         [self.adManager setNetworkId:90750];
         [self.adManager setServerUrl:@"http://demo.v.fwmrm.net"];
     
-        BCOVPlayerSDKManager *manager = [BCOVPlayerSDKManager sharedManager];
-    [2] id<BCOVPlaybackController> controller = [manager createFWPlaybackControllerWithAdContextPolicy:[self adContextPolicy] viewStrategy:nil];
-        [self.view addSubview:controller.view];
+        BCOVPlayerSDKManager *sdkManager = [BCOVPlayerSDKManager sharedManager];
+    [2] id<BCOVPlaybackController> playbackController = [sdkManager createFWPlaybackControllerWithAdContextPolicy:[self adContextPolicy] viewStrategy:nil];
+        [self.view addSubview:playbackController.view];
     
         BCOVCatalogService *catalog = [[BCOVCatalogService alloc] initWithToken:token];
         [catalog findPlaylistWithPlaylistID:playlistID
@@ -76,8 +76,8 @@ Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:
                                               NSDictionary *jsonResponse,
                                               NSError      *error) {
     
-                                     [controller setVideos:playlist];
-                                     [controller play];
+                                     [playbackController setVideos:playlist];
+                                     [playbackController play];
                                      
                                  }];
     }
@@ -88,6 +88,7 @@ Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:
         
         return [^ id<FWContext>(BCOVVideo *video, BCOVSource *source, NSTimeInterval videoDuration) {
             
+            // Prevent retain cycles when using self
             typeof(self) strongSelf = weakSelf;
     
     [3]     id<FWContext> adContext = [strongSelf.adManager newContext];
@@ -104,20 +105,146 @@ Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:
 Let's break this code down into steps, to make it a bit simpler to digest:
 
 1. You create the same ad manager that you would create if you were using FreeWheel's iOS SDK directly, and this will be required later.
-1. BCOVFW adds some category methods to BCOVPlaybackManager. The first of these is `-createFWPlaybackControllerWithAdContextPolicy:viewStrategy:`. Use this method to create your playback controller. Alternatively (if you are using more than one session provider), you can create a BCOVFWSessionProvider and pass that to the manager method that creates a playback controller with upstream session providers.\*
-1. You create the same ad context that would create if you were using FreeWheel's iOS SDK directly, using the manager created in step 1. This is where you would register for companion slots, turn on default ad controls, or any other settings you need to change. This block will get called before each new session is delivered.
+1. BCOVFW adds some category methods to BCOVPlayerSDKManager. The first of these is `-createFWPlaybackControllerWithAdContextPolicy:viewStrategy:`. Use this method to create your playback controller. Alternatively (if you are using more than one session provider), you can create a BCOVFWSessionProvider and pass that to the SDK manager method that creates a playback controller with upstream session providers.\*
+1. You create the same ad context that would create if you were using FreeWheel's iOS SDK directly, using the SDK manager created in step 1. This is where you would register for companion slots, turn on default ad controls, or any other settings you need to change. This block will get called before each new session is delivered.
 
 \* Note that BCOVFWSessionProvider is not tested for use with other advertising session providers, such as BCOVIMASessionProvider. Also note that BCOVFWSessionProvider should come after any other session providers in the chain passed to the manager when constructing the playback controller.
 
-If you have questions or need help, we have a support forum for Brightcove's native Player SDKs at https://groups.google.com/forum/#!forum/brightcove-native-player-sdks . If you are unsure what your ad settings are or have questions regarding what FWContext and other FW classes, please contact FreeWheel support.
+If you have questions or need help, visit the [Brightcove Native Player SDK support forum](https://groups.google.com/forum/#!forum/brightcove-native-player-sdks). If you are unsure what your ad settings are or have questions regarding what FWContext and other FW classes, please contact FreeWheel support at [http://freewheel.tv](http://freewheel.tv).
 
 Play and Pause
 ===========
 The Brightcove FreeWheel Plugin implements custom play and pause logic to ensure the smoothest possible ad experience. Therefore, you will need to make sure that you use the play method on the `BCOVPlaybackController` or the `-[BCOVSessionProviderExtension fw_play]` or `-[BCOVSessionProviderExtension fw_pause]` ([BCOVSessionProviderExtension][BCOVFWComponent]), and not the AVPlayer.  
 
-As an example, calling play for the first time on `BCOVPlaybackController` allows BCOVFW to process preroll ads without any of the content playing before the preroll. For more information on how BCOVFW overrides the default `BCOVPlaybackController` methods, please check out [BCOVSessionProviderExtension][BCOVFWComponent].
+As an example, calling play for the first time on `BCOVPlaybackController` allows BCOVFW to process preroll ads without any of the content playing before the preroll.
 
-[BCOVFWComponent]: https://github.com/brightcove/brightcove-player-sdk-ios-fw/blob/master/Headers/BCOVFWComponent.h
+[BCOVFWComponent]: https://github.com/brightcove/brightcove-player-sdk-ios-fw/blob/master/ios/BrightcoveFW.framework/Headers/BCOVFWComponent.h
+
+Using the Built-In PlayerUI
+===========================
+If you are using version 5.1 or later of the Brightcove Player SDK, you can take advantage of the built-in ad controls with the Brightcove FreeWheel plugin.
+
+To use the PlayerUI, create your playback controller as in the quick start code above.
+
+    BCOVPlayerSDKManager *sdkManager = [BCOVPlayerSDKManager sharedManager];
+    id<BCOVPlaybackController> playbackController =
+    [sdkManager createFWPlaybackControllerWithAdContextPolicy:[self adContextPolicy] viewStrategy:nil];
+
+Then create your Player View. This view contains both the video player view and the view that displays playback and ad controls. This setup is the same no matter what plugin you are using.
+
+**Note:** The `BrightcovePlayerUI` module is no longer needed and has been removed. (Prior to version 5.1 of the Brightcove Player SDK, the Brightcove PlayerUI plugin was a separate framework and module.) You can remove any imports that reference the Brightcove PlayerUI module. All PlayerUI headers are now found in the `BrightcovePlayerSDK` module.
+
+Create a property in your UIViewController to keep track of the BCOVPUIPlayerView. The BCOVPUIPlayerView will contain both the playback controller's view, and the controls view.
+
+	// PlayerUI's Player View
+	@property (nonatomic) BCOVPUIPlayerView *playerView;
+
+Create the BCOVPUIBasicControlView, and then the BCOVPUIPlayerView. This is where we associate the playback controller (and thus all the videos it plays) with the controls.
+Set the player view to match the video container from your layout (`videoView`) when it resizes.
+
+    // Create and configure Control View.
+    BCOVPUIBasicControlView *controlView = [BCOVPUIBasicControlView basicControlViewWithVODLayout];
+    self.playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:controlView];
+    self.playerView.frame = self.videoView.bounds;
+    self.playerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
+Then, add the BCOVPUIPlayerView to your video container, `videoView`.
+
+    // Add BCOVPUIPlayerView to your video view.
+    [self.videoView addSubview:self.playerView];
+
+The last step is specific to FreeWheel. In your adContextPolicy, be sure to set your video display base to the player view's content overlay view. This allows FreeWheel ads to play over the video, but keeps the ad controls above the FreeWheel ad.
+
+    - (BCOVFWSessionProviderAdContextPolicy)adContextPolicy
+    {
+        // Prevent retain cycles when using self
+        __weak typeof(self) weakSelf = self;
+        
+        return [^ id<FWContext>(BCOVVideo *video, BCOVSource *source, NSTimeInterval videoDuration) {
+            
+            typeof(self) strongSelf = weakSelf;
+    
+    		 ... FREEWHEEL SETUP CODE ...
+
+			// Tell FreeWheel to display ads in they content overlay view
+            [adContext setVideoDisplayBase:strongSelf.playerView.contentOverlayView];
+            
+            return adContext;
+            
+        } copy];
+    }
+
+Now, when playing video with ads, you will see ad markers on the timeline scrubber, plus ad controls on the ad during ad playback.
+
+The PlayerUI is highly customizable. For more information and sample code, please see **Custom Layouts** section in the README file of the [Brightcove Native Player SDK repository][BCOVSDK].
+
+[BCOVSDK]: https://github.com/brightcove/brightcove-player-sdk-ios
+
+Seeking Without Ads
+===========
+Use `-[BCOVPlaybackController seekWithoutAds:(CMTime)time completionHandler:(void (^)(BOOL finished))completion]` to resume playback at a specific time without forcing the user to watch ads scheduled before `time`. When using `seekWithoutAds:completionHandler:`, `autoPlay` should be disabled in the `BCOVPlaybackController`. `seekWithoutAds:completionHandler:` should be called on or after receiving `kBCOVPlaybackSessionLifecycleEventReady` in your `playbackController:playbackSession:didReceiveLifecycleEvent` delegate method.
+
+The `shutter` and `shutterFadeTime` properties of the `BCOVPlaybackController` can be used along with `seekWithoutAds:completionHandler:` to hide frame-flicker which can occur as the AVPlayer loads assets. In your BCOVPlaybackController setup code, close the shutter to hide the player view:
+
+```
+  NSObject<BCOVPlaybackController> *playbackController;
+        
+  playbackController = [sdkManager createFWPlaybackControllerWithAdContextPolicy:nil
+                                                                    viewStrategy:nil];
+  playbackController.delegate = self;
+        
+  if (self.willSeekWithoutAds)
+  {
+    // set the shutter fade time to zero to hide the player view immediately.
+    playbackController.shutterFadeTime = 0.0;
+    playbackController.shutter = YES;
+    
+    // disable autoPlay when resuming playback.
+    playbackController.autoPlay = NO;
+  }
+```
+
+Apple recommends waiting for the status of an AVPlayerItem to change to ready-to-play before using the AVPlayerItem; call `seekWithoutAds:completionHandler:` in the `playbackController:playbackSession:didReceiveLifecycleEvent` method of your `BCOVPlaybackControllerDelegate` delegate.
+
+```
+- (void)playbackController:(NSObject<BCOVPlaybackController>*)controller
+           playbackSession:(NSObject<BCOVPlaybackSession>*)session
+  didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+{
+  if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
+  {
+
+    if (self.willSeekWithoutAds)
+    {
+      __weak typeof(controller) weakController = controller;
+
+      // seek without playing ads which are scheduled before the seek time, i.e. resume playback.
+      [controller seekWithoutAds:CMTimeMake(seekWithoutAdsValue, seekWithoutAdsTimescale)
+             completionHandler:^(BOOL finished){
+
+        if (!finished)
+        {
+          NSLog (@"seekWithoutAds failed to finish");
+        }
+
+        typeof(controller) strongController = weakController;
+        if (strongController)
+        {
+          // fade out the shutter to reveal the player view.
+          strongController.shutterFadeTime = 0.25;
+          strongController.shutter = NO;
+
+          // turn off seeking without ads - especially important if this player is being used with a playlist
+          self.willSeekWithoutAds = NO;
+        }
+
+      }];
+    }
+  }
+}
+```
+
+Note that with Seeking Without Ads enabled in your app, you will still see the network traffic that normally occurs as part of setting up the FreeWheel plugin. This traffic is necessary for proper plugin setup, and does not affect the Seeking Without Ads functionality.
 
 Customizing Plugin Behavior
 ===========
@@ -126,9 +253,9 @@ You can customize default plugin behavior by creating an instance of `BCOVFWSess
 ```
     BCOVFWSessionProviderOptions *options = [[BCOVFWSessionProviderOptions alloc] init];
     options.cuePointProgressPolicy = [BCOVCuePointProgressPolicy progressPolicyProcessingCuePoints:BCOVProgressPolicyProcessFinalCuePoint resumingPlaybackFrom:BCOVProgressPolicyResumeFromContentPlayhead ignoringPreviouslyProcessedCuePoints:YES];
-    id<BCOVPlaybackSessionProvider> sessionProvider = [playbackManager createFWSessionProviderWithAdContextPolicy:[self adContextPolicy] upstreamSessionProvider:nil options:options];
+    id<BCOVPlaybackSessionProvider> sessionProvider = [sdkManager createFWSessionProviderWithAdContextPolicy:[self adContextPolicy] upstreamSessionProvider:nil options:options];
 
-    id<BCOVPlaybackController> playbackController = [playbackManager createPlaybackControllerWithSessionProvider:sessionProvider viewStrategy:nil];
+    id<BCOVPlaybackController> playbackController = [sdkManager createPlaybackControllerWithSessionProvider:sessionProvider viewStrategy:nil];
 ```
 
 Preloading Slots
