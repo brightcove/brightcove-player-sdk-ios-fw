@@ -1,8 +1,8 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 2.1.1.298
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 2.1.2.302
 
 Supported Platforms
 ===================
-iOS 7.0 and above.
+iOS 8.0 and above.
 
 Installation
 ===========
@@ -12,7 +12,7 @@ The FreeWheel Plugin for Brightcove Player SDK provides a static library framewo
 CocoaPods
 --------------
 
-You can use [CocoaPods][cocoapods] to add the FreeWheel Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-SDK-FW` podspec [here][podspecs]. To use this spec, add the following to the top of Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`. CocoaPods version 0.39.0 or higher is required.
+You can use [CocoaPods][cocoapods] to add the FreeWheel Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-SDK-FW` podspec [here][podspecs]. To use this spec, add the following to the top of Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`. CocoaPods version 1.0 or higher is required.
 
 The FreeWheel SDK **is not** included in this pod.  You **must** manually add the FreeWheel SDK AdManager.framework to your project. The pod will however add all the libraries required by AdManager.framework framework.
 
