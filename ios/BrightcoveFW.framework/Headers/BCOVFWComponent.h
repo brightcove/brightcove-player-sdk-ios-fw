@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "BCOVPlayerSDK.h"
+
 #import <BrightcovePlayerSDK/BrightcovePlayerSDK.h>
 
 #import "BCOVFWSessionProvider.h"

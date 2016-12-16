@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 2.1.2.302
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 2.1.3.309
 
 Supported Platforms
 ===================
@@ -23,6 +23,12 @@ Static Framework example:
 
     pod 'Brightcove-Player-SDK-FW'
     
+Maintaining an up-to-date master podspec repo is necessary to ensure that you are always using the latest versions of Brightcove software. As of CocoaPods 1.0.0, podspec repo updates are no longer an automatic feature, so to update your master repo, run the following on the command line:
+
+```
+pod repo update
+```
+
 Manual
 --------------
 
@@ -58,25 +64,28 @@ Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:
     
     -(void)setup
     {
-        NSString *token;      // (Brightcove Media API token with URL access)
-        NSString *playlistID; // (ID of the playlist you wish to use)
+        NSString *policyKey = <your-policy-key>;
+        NSString *accountId = <your-account-id>;
+        NSString *videoId = <your-video-id>;
     
     [1] self.adManager = newAdManager();
         [self.adManager setNetworkId:90750];
         [self.adManager setServerUrl:@"http://demo.v.fwmrm.net"];
     
         BCOVPlayerSDKManager *sdkManager = [BCOVPlayerSDKManager sharedManager];
-    [2] id<BCOVPlaybackController> playbackController = [sdkManager createFWPlaybackControllerWithAdContextPolicy:[self adContextPolicy] viewStrategy:nil];
+    [2] id<BCOVPlaybackController> playbackController =
+            [sdkManager createFWPlaybackControllerWithAdContextPolicy:[self adContextPolicy] viewStrategy:nil];
         [self.view addSubview:playbackController.view];
     
-        BCOVCatalogService *catalog = [[BCOVCatalogService alloc] initWithToken:token];
-        [catalog findPlaylistWithPlaylistID:playlistID
-                                 parameters:nil
-                                 completion:^(BCOVPlaylist *playlist,
-                                              NSDictionary *jsonResponse,
-                                              NSError      *error) {
+        BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccuntID:accountId
+                                                                           policyKey:policyKey];
+        [service findVideoWithVideoID:videoId
+                           parameters:nil
+                           completion:^(BCOVVideo    *video,
+                                        NSDictionary *jsonResponse,
+                                        NSError      *error) {
     
-                                     [playbackController setVideos:playlist];
+                                     [playbackController setVideos:@[ video ]];
                                      [playbackController play];
                                      
                                  }];
@@ -102,7 +111,8 @@ Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:
         } copy];
     }
 ```
-Let's break this code down into steps, to make it a bit simpler to digest:
+
+The code broken down into steps:
 
 1. You create the same ad manager that you would create if you were using FreeWheel's iOS SDK directly, and this will be required later.
 1. BCOVFW adds some category methods to BCOVPlayerSDKManager. The first of these is `-createFWPlaybackControllerWithAdContextPolicy:viewStrategy:`. Use this method to create your playback controller. Alternatively (if you are using more than one session provider), you can create a BCOVFWSessionProvider and pass that to the SDK manager method that creates a playback controller with upstream session providers.\*
