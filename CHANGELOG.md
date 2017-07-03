@@ -1,82 +1,46 @@
-# 2.1.3
-### Additions and Improvements
-* The podspec now supports version 5.3 of the Brightcove Player SDK for iOS.
-
-# 2.1.2
-### Additions and Improvements
-* The minimum supported deployment target is now iOS 8.0.
-
-# 2.1.1
-### Additions and Improvements
-* Added `-seekWithoutAds:(CMTime)time completionHandler:(void (^)(BOOL finished))completion`. Use this method to resume playback at a specific `time` without forcing the user to watch ads scheduled before `time`. `-seekWithoutAds:completionHandler:` requires Brightcove Player SDK for iOS version 5.2.0 or higher. Refer to the README.md for sample code.
-
-# 2.1.0
-### Additions and Improvements
-* Internal improvements to support ad controls in the Brightcove PlayerUI.
-* Requires version 5.1.0 or higher of the Brightcove Player SDK.
-
-# 2.0.2
-### Additions and Improvements
-* Fixed a memory leak.
-* Fixed an issue where the ad:didProgressTo: delegate method was called even when the ad was paused.
-* Fixed an issue where the lifecycle event `kBCOVPlaybackSessionLifecycleEventWillPauseForAd` was not sent for post-rolls.
-* Fixed an issue where the lifecycle event `kBCOVPlaybackSessionLifecycleEventWillPauseForAd` was sent when going to the background when no ad was playing.
-
-# 2.0.1
-### Additions and Improvements
-* Reformatted the framework's short version string to comply with App Store submission requirements.
-
-# 2.0.0
+# 6.0.1
+# Brightcove Native Player for iOS
 ### Breaking Changes
-* Calls to `[AVPlayer play]`, `[AVPlayer pause]`, and `[AVPlayer seekToTime:]` must be changed to call the corresponding method on the `BCOVPlaybackController`. Failure to do so will cause undefined behavior.
-* The static library distributable has been removed. If installed manually (not CocoaPods), you will need to remove libBCOVFW.a and its headers from the Header Search Path. Please see README.md for new install options.
-* Header `BCOVFW.h` has been removed. Please see README.md for new import options.
+* This and future releases of Brightcove Native Player for iOS will include all software components, all having the same version number. When building your app with Brightcove Native Player for iOS components, the component version numbers must always match. As an example, when using version 6.0.1 of the FreeWheel Plugin for Brightcove Player SDK for iOS, you must also use version 6.0.1 of the core Brightcove Player SDK for iOS. Each component will continue to be available from an individual GitHub repositories.
+* The Brightcove Podspecs repository has moved and the Pods have been renamed. The Podspecs are now available at [https://github.com/brightcove/BrightcoveSpecs](https://github.com/brightcove/BrightcoveSpecs).
+* The CHANGELOG.md has been consolidated for all Brightcove Native Player for iOS software components.
 
-### Additions and Improvements
-* Bitcode support. Note, the FW library does not yet support Bitcode.
-* The SDK is now distributed as a static framework.
-* Fixed a bug that caused the content to play before playing the prerolls.
-* Internal improvements.
-
-# 1.1.1
-### Additions and Improvements
-* Send `kBCOVPlaybackSessionLifecycleEventWillPauseForAd` on the lifecycle delegate method when pausing for an Ad.
-
-# 1.1.0
+# Brightcove Player SDK for iOS (Core)
 ### Breaking Changes
-* **Important: Please read "Playing and Pausing" section of README.md**
-* We now wait to call the ad Context policy until the duration of the AVPlayer is known. Previous to this change, we would call the block as soon as we could, which may have included a valid duration. Although documented, this was confusing, and probably not what you would expect. Although we do not recommend it, if you need the old behavior, please see the README.md on how to disable `waitForAVPlayerDuration`.
+* The `BrightcoveFairPlay` module is now integrated into the core `BrightcovePlayerSDK` module and framework. No functional code changes are required, but you should make these changes for your build:
+	* Remove `BrightcoveFairPlay.framework` from your project.
+	* If using CocoaPods, remove all references to `BrightcoveFairPlay` from your Podfiles, and then update.
+	* In your source code, change any #includes from `<BrightcoveFairPlay/header_name.h>` to `<BrightcovePlayerSDK/header_name.h>`.
+	* Remove any imports that refer to the `BrightcoveFairPlay` module.
+* The `BrightcoveSidecarSubtitles` module is now integrated into the core `BrightcovePlayerSDK` module and framework. No functional code changes are required, but you should make these changes for your build:
+	* Remove `BrightcoveSidecarSubtitles.framework` from your project.
+	* If using CocoaPods, remove all references to `BrightcoveSidecarSubtitles` from your Podfiles, and then update.
+	* In your source code, change any #includes from `<BrightcoveSidecarSubtitles/header_name.h>` to `<BrightcovePlayerSDK/header_name.h>`.
+	* Remove any imports that refer to the `BrightcoveSidecarSubtitles` module.
 
 ### Additions and Improvements
-* Updated README.md for more information about plugin customization.
-* Add the ability to preload slots. See README.md for more information.
-* Added `session.providerExtentionisPausedOnFreewheelsRequest`, `-[session.providerExtention fw_pause]` and `-[session.providerExtention fw_play]`. See README.md for more information.
+* Supports downloading FairPlay-encrypted HLS videos, and playing them back from storage while online or offline.
+* New classes and types to support offline playback: `BCOVOfflineVideoManager`, `BCOVOfflineVideoStatus`, `BCOVOfflineVideoToken`, `BCOVOfflineVideoDownloadState`.
+* Please see our app developer's guide for full details: [iOS App Developer's Guide to Video Downloading and Offline Playback with FairPlay](OfflinePlayback.md)
+* The `BCOVVideo` class has three new properties:
+	* `BOOL canBeDownloaded`: Returns YES if this video object can be downloaded for offline playback
+	* `BOOL offline`: Returns YES if this instance refers to an offline video.
+	* `BOOL playableOffline`: Returns YES if this instance refers to an offline video playable from the device's local storage. Returns NO if the video has not completed downloading, or if the video has been purged and needs to be re-downloaded.
+* The publisher ID can be nil when calling `-[BCOVFPSBrightcoveAuthProxy initWithPublisherId:applicationId:]`. Neither value is needed for Dynamic Delivery accounts.
 
-# 1.0.4
+# FreeWheel Plugin for Brightcove Player SDK for iOS
 ### Additions and Improvements
-* Internal Improvements.
-* You must use the Brightcove Player SDK for iOS version 4.4.0+.
+* The FreeWheel Plugin for Brightcove Player SDK now supports version 6.15.0 of the FreeWheel Ad Manager framework.
 
-# 1.0.3
-### Breaking Changes
-* iOS 6 is still deprecated in this release. We have not removed support yet.  iOS 6.x currently accounts for ~2% of global SDK traffic.
-* This release has been built with Xcode 6. In Xcode 6, Apple removed armv7s from the list of standard architectures. This release no longer includes an armv7s architecture slice.
-
+# IMA Plugin for Brightcove Player SDK for iOS
 ### Additions and Improvements
-* Internal Improvements
+* Fixes and issue where the video view start time was sometimes reported incorrectly.
 
-# 1.0.2
-
-### Breaking Changes
-* Use of ReactiveCocoa in public APIs within the BCOVW Plugin has been removed in this release.
-
+# Omniture Plugin for Brightcove Player SDK for iOS
 ### Additions and Improvements
-* This release is required for compatibility with Brightcove Player SDK for iOS v4.2.0, but contains no outward-facing functionality changes or bug fixes.
+* Fixes and issue where the video view start time was sometimes reported incorrectly.
 
-# 1.0.1
-
-### Breaking Changes
-* Use of ReactiveCocoa in public APIs within the BCOVW Plugin is deprecated in this release. Version 1.1.0 will not require clients to install any version of ReactiveCocoa.
-
+# OnceUX Plugin for Brightcove Player SDK for iOS
 ### Additions and Improvements
-* This release is required for compatibility with Brightcove Player SDK for iOS v4.0.8, but contains no outward-facing functionality changes or bug fixes.
+* Fixes and issue where the video view start time was sometimes reported incorrectly.
+

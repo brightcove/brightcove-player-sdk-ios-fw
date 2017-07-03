@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 2.1.3.309
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.0.1.72
 
 Supported Platforms
 ===================
@@ -9,19 +9,22 @@ Installation
 
 The FreeWheel Plugin for Brightcove Player SDK provides a static library framework for installation. A dynamic framework will be added in the future when FreeWheel releases a dylib version.
 
+The FreeWheel Plugin for Brightcove Player SDK has been integrated with version 6.15.0 of the FreeWheel AdManager framework which is available from the [MRM Integration SDK Downloads](https://hub.freewheel.tv/display/techdocs/MRM+Integration+SDK+Downloads) page.
+
 CocoaPods
 --------------
 
-You can use [CocoaPods][cocoapods] to add the FreeWheel Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-SDK-FW` podspec [here][podspecs]. To use this spec, add the following to the top of Podfile: `source 'https://github.com/brightcove/BCOVSpecs.git'`. CocoaPods version 1.0 or higher is required.
+You can use [CocoaPods][cocoapods] to add the FreeWheel Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-FreeWheel` podspec [here][podspecs]. To use this spec, add the following to the top of Podfile: `source 'https://github.com/brightcove/BrightcoveSpecs.git'`. CocoaPods version 1.0 or higher is required.
 
 The FreeWheel SDK **is not** included in this pod.  You **must** manually add the FreeWheel SDK AdManager.framework to your project. The pod will however add all the libraries required by AdManager.framework framework.
 
 Static Framework example:  
 
-    source 'https://github.com/CocoaPods/Specs.git'
-    source 'https://github.com/brightcove/BCOVSpecs.git'
+```
+source 'https://github.com/brightcove/BrightcoveSpecs.git'
 
-    pod 'Brightcove-Player-SDK-FW'
+pod 'Brightcove-Player-FreeWheel'
+```
     
 Maintaining an up-to-date master podspec repo is necessary to ensure that you are always using the latest versions of Brightcove software. As of CocoaPods 1.0.0, podspec repo updates are no longer an automatic feature, so to update your master repo, run the following on the command line:
 
@@ -51,7 +54,7 @@ The FreeWheel Plugin for Brightcove Player SDK can be imported into code a few d
 
 [bcovsdk]: https://github.com/brightcove/brightcove-player-sdk-ios
 [cocoapods]: http://cocoapods.org
-[podspecs]: https://github.com/brightcove/BCOVSpecs/tree/master/Brightcove-Player-SDK-FW
+[podspecs]: https://github.com/brightcove/BrightcoveSpecs/tree/master/Brightcove-Player-FreeWheel
 [release]: https://github.com/brightcove/brightcove-player-sdk-ios-fw/releases
 
 Quick Start
