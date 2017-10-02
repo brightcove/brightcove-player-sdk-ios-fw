@@ -10,17 +10,47 @@
 
 #import <BrightcovePlayerSDK/BrightcovePlayerSDK.h>
 
-
 @protocol FWContext;
+@class FWRequestConfiguration;
+
+/**
+ * The BCOVFWSessionProviderAdContextPolicy block returns an object of class
+ * BCOVFWContext which wraps the parameters of a FreeWheel ad request:
+ *
+ * // Submit request with 5s timeout
+ * [_bcovFWContext submitRequestWithConfiguration:self.adRequestConfig timeout:5];
+ *
+ *
+ */
+@interface BCOVFWContext : NSObject
+
+/**
+ * The FWContext object to be used when calling the -submintRequestWithConfiguration:timeout:
+ * method of FWContext.
+ */
+@property (nonatomic) id<FWContext> adContext;
+
+/**
+ * The FWRequestConfiguration object to be used when calling the-submintRequestWithConfiguration:timeout:
+ * method of FWContext.
+ */
+@property (nonatomic) FWRequestConfiguration *adRequestConfig;
+
+- (BCOVFWContext *) initWithAdContext:(id<FWContext>)adContext requestConfiguration:(FWRequestConfiguration *)adRequestConfig;
+
+- (id) init __attribute__((unavailable("Use initWithAdContext:requestConfiguration: instead.")));
+
+@end
 
 
 /**
  * @typedef BCOVFWSessionProviderAdContextPolicy
  *
- * Policy that returns a FreeWheel context object for the given video and
- * source. Clients of the BCOVFW component must implement this policy to return
- * an appropriately-configured FreeWheel context for each video/source/duration. The same
- * context object may be returned for all video/source combinations, if desired.
+ * Policy that returns a BCOVFWAdContext object (FWContext and FWRequestConfiguration)
+ * for the given video and source. Clients of the BCOVFW component must implement
+ * this policy to return an appropriately-configured FreeWheel context for each
+ * video/source/duration. The same context object may be returned for all
+ * video/source combinations, if desired.
  *
  * The videoDuration in seconds is provided for convenience when calling setVideoAssetId: on
  * the ad context. By default, the sdk will wait for the AVPlayerItem to report
@@ -31,7 +61,7 @@
  * from Video Cloud) or you are playing a live stream, set `BCOVFWSessionProviderOptions.waitForAVPlayerDuration = NO`
  * when creating the plugin.
  */
-typedef id<FWContext> (^BCOVFWSessionProviderAdContextPolicy)(BCOVVideo *video, BCOVSource *source, NSTimeInterval videoDuration);
+typedef BCOVFWContext*(^BCOVFWSessionProviderAdContextPolicy)(BCOVVideo *video, BCOVSource *source, NSTimeInterval videoDuration);
 
 
 /**

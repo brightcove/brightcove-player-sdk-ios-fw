@@ -44,7 +44,7 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.0.6.129</h1>
+						<h1>FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.1.0.156</h1>
 
 <h1>Supported Platforms</h1>
 
@@ -118,7 +118,6 @@ pod 'Brightcove-Player-FreeWheel'
 
     [1] self.adManager = newAdManager();
         [self.adManager setNetworkId:90750];
-        [self.adManager setServerUrl:@"http://demo.v.fwmrm.net"];
 
         BCOVPlayerSDKManager *sdkManager = [BCOVPlayerSDKManager sharedManager];
     [2] id&lt;BCOVPlaybackController&gt; playbackController =
@@ -143,18 +142,26 @@ pod 'Brightcove-Player-FreeWheel'
     {
         __weak typeof(self) weakSelf = self;
 
-        return [^ id&lt;FWContext&gt;(BCOVVideo *video, BCOVSource *source, NSTimeInterval videoDuration) {
+        return [^ BCOVFWContext*(BCOVVideo *video, BCOVSource *source, NSTimeInterval videoDuration) {
 
             // Prevent retain cycles when using self
             typeof(self) strongSelf = weakSelf;
 
     [3]     id&lt;FWContext&gt; adContext = [strongSelf.adManager newContext];
-            [adContext setPlayerProfile:&lt;player-profile&gt; defaultTemporalSlotProfile:nil defaultVideoPlayerSlotProfile:nil defaultSiteSectionSlotProfile:nil];
-            [adContext setSiteSectionId:&lt;site-section-id&gt; idType:FWIdTypeCustom pageViewRandom:0 networkId:0 fallbackId:0];
-            [adContext setVideoAssetId:&lt;video-asset-id&gt; idType:FWIdTypeCustom duration:videoDuration durationType:FWVideoAssetDurationTypeExact location:nil autoPlayType:true videoPlayRandom:0 networkId:0 fallbackId:0];
+
+            FWRequestConfiguration *adRequestConfig = [[FWRequestConfiguration alloc] initWithServerURL:@"http://demo.v.fwmrm.net" playerProfile:&lt;player-profile&gt;];
+            adRequestConfig.siteSectionConfiguration = [[FWSiteSectionConfiguration alloc] initWithSiteSectionId:&lt;site-section-id&gt; idType:FWIdTypeCustom];
+            adRequestConfig.videoAssetConfiguration = [[FWVideoAssetConfiguration alloc] initWithVideoAssetId:&lt;video-asset-id&gt; idType:FWIdTypeCustom duration:videoDuration durationType:FWVideoAssetDurationTypeExact autoPlayType:FWVideoAssetAutoPlayTypeAttended];
+
             [adContext setVideoDisplayBase:strongSelf.videoContainerView];
 
-            return adContext;
+            [adRequestConfig addSlotConfiguration:[[FWTemporalSlotConfiguration alloc] initWithCustomId:@"preroll" adUnit:FWAdUnitPreroll timePosition:0.0]];
+            [adRequestConfig addSlotConfiguration:[[FWTemporalSlotConfiguration alloc] initWithCustomId:@"midroll" adUnit:FWAdUnitMidroll timePosition:&lt;non-zero-time-interval&gt;]];
+            [adRequestConfig addSlotConfiguration:[[FWTemporalSlotConfiguration alloc] initWithCustomId:@"postroll" adUnit:FWAdUnitPostroll timePosition:0.0]];
+
+            BCOVFWContext *bcovAdContext = [[BCOVFWContext alloc] initWithAdContext:adContext requestConfiguration:adRequestConfig];
+
+            return bcovAdContext;
 
         } copy];
     }
@@ -327,7 +334,7 @@ self.playerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAuto
 
 <p>Depending on your FreeWheel configuration, supplying an accurate duration in calls to <code>setVideoId:</code> is the difference between receiving the correct number of midrolls or not.</p>
 
-<p>By default, the SDK will wait to call the <code>BCOVFWSessionProviderAdContextPolicy</code> until the AVPlayerItem has an accurate duration, and this value will be provided to the block call. If you do not want to wait until the AVPlayerItem duration is ready and you have this information available from another source (like the BCOVVideo/BCOVSource properties or your own CMS), <code>waitForAVPlayerDuration</code> can be used to disable waiting.</p>
+<p>By default, the SDK will wait to call the <a href="Blocks/BCOVFWSessionProviderAdContextPolicy.html"><code>BCOVFWSessionProviderAdContextPolicy</code></a> until the AVPlayerItem has an accurate duration, and this value will be provided to the block call. If you do not want to wait until the AVPlayerItem duration is ready and you have this information available from another source (like the BCOVVideo/BCOVSource properties or your own CMS), <code>waitForAVPlayerDuration</code> can be used to disable waiting.</p>
 
 <h2>Handling Seeks</h2>
 
@@ -344,6 +351,8 @@ self.playerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAuto
 						<div class="index-column">
 							<h2 class="index-title">Class References</h2>
 							<ul>
+								
+								<li><a href="Classes/BCOVFWContext.html">BCOVFWContext</a></li>
 								
 								<li><a href="Classes/BCOVFWSessionProvider.html">BCOVFWSessionProvider</a></li>
 								
@@ -376,7 +385,7 @@ self.playerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAuto
 					<footer>
 						<div class="footer-copyright">
 							
-							<p class="copyright">Copyright &copy; 2017 Brightcove. All rights reserved. Updated: 2017-09-07</p>
+							<p class="copyright">Copyright &copy; 2017 Brightcove. All rights reserved. Updated: 2017-10-02</p>
 							
 							
 							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>

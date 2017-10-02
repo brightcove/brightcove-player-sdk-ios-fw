@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.0.6.129
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.1.0.156
 
 Supported Platforms
 ===================
@@ -71,7 +71,6 @@ Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:
     
     [1] self.adManager = newAdManager();
         [self.adManager setNetworkId:90750];
-        [self.adManager setServerUrl:@"http://demo.v.fwmrm.net"];
     
         BCOVPlayerSDKManager *sdkManager = [BCOVPlayerSDKManager sharedManager];
     [2] id<BCOVPlaybackController> playbackController =
@@ -96,18 +95,26 @@ Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:
     {
         __weak typeof(self) weakSelf = self;
         
-        return [^ id<FWContext>(BCOVVideo *video, BCOVSource *source, NSTimeInterval videoDuration) {
+        return [^ BCOVFWContext*(BCOVVideo *video, BCOVSource *source, NSTimeInterval videoDuration) {
             
             // Prevent retain cycles when using self
             typeof(self) strongSelf = weakSelf;
     
     [3]     id<FWContext> adContext = [strongSelf.adManager newContext];
-            [adContext setPlayerProfile:<player-profile> defaultTemporalSlotProfile:nil defaultVideoPlayerSlotProfile:nil defaultSiteSectionSlotProfile:nil];
-            [adContext setSiteSectionId:<site-section-id> idType:FWIdTypeCustom pageViewRandom:0 networkId:0 fallbackId:0];
-            [adContext setVideoAssetId:<video-asset-id> idType:FWIdTypeCustom duration:videoDuration durationType:FWVideoAssetDurationTypeExact location:nil autoPlayType:true videoPlayRandom:0 networkId:0 fallbackId:0];
+    
+            FWRequestConfiguration *adRequestConfig = [[FWRequestConfiguration alloc] initWithServerURL:@"http://demo.v.fwmrm.net" playerProfile:<player-profile>];
+            adRequestConfig.siteSectionConfiguration = [[FWSiteSectionConfiguration alloc] initWithSiteSectionId:<site-section-id> idType:FWIdTypeCustom];
+            adRequestConfig.videoAssetConfiguration = [[FWVideoAssetConfiguration alloc] initWithVideoAssetId:<video-asset-id> idType:FWIdTypeCustom duration:videoDuration durationType:FWVideoAssetDurationTypeExact autoPlayType:FWVideoAssetAutoPlayTypeAttended];
+
             [adContext setVideoDisplayBase:strongSelf.videoContainerView];
             
-            return adContext;
+            [adRequestConfig addSlotConfiguration:[[FWTemporalSlotConfiguration alloc] initWithCustomId:@"preroll" adUnit:FWAdUnitPreroll timePosition:0.0]];
+            [adRequestConfig addSlotConfiguration:[[FWTemporalSlotConfiguration alloc] initWithCustomId:@"midroll" adUnit:FWAdUnitMidroll timePosition:<non-zero-time-interval>]];
+            [adRequestConfig addSlotConfiguration:[[FWTemporalSlotConfiguration alloc] initWithCustomId:@"postroll" adUnit:FWAdUnitPostroll timePosition:0.0]];
+        
+            BCOVFWContext *bcovAdContext = [[BCOVFWContext alloc] initWithAdContext:adContext requestConfiguration:adRequestConfig];
+
+            return bcovAdContext;
             
         } copy];
     }
