@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.3.9.422
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.3.10.441
 
 Supported Platforms
 ===================
@@ -9,7 +9,7 @@ Installation
 
 The FreeWheel Plugin for Brightcove Player SDK provides a static library framework for installation. A dynamic framework will be added in the future when FreeWheel releases a dylib version.
 
-The FreeWheel Plugin for Brightcove Player SDK has been integrated with version 6.15.0 of the FreeWheel AdManager framework which is available from the [MRM Integration SDK Downloads](https://hub.freewheel.tv/display/techdocs/MRM+Integration+SDK+Downloads) page.
+The FreeWheel Plugin for Brightcove Player SDK has been integrated with version 6.25.0 of the FreeWheel AdManager framework which is available from the [MRM Integration SDK Downloads](https://hub.freewheel.tv/display/techdocs/MRM+Integration+SDK+Downloads) page.
 
 CocoaPods
 --------------
