@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.3.10.441
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.3.11.455
 
 Supported Platforms
 ===================
@@ -158,18 +158,36 @@ Create a property in your UIViewController to keep track of the BCOVPUIPlayerVie
 	@property (nonatomic) BCOVPUIPlayerView *playerView;
 
 Create the BCOVPUIBasicControlView, and then the BCOVPUIPlayerView. This is where we associate the playback controller (and thus all the videos it plays) with the controls.
-Set the player view to match the video container from your layout (`videoView`) when it resizes.
 
     // Create and configure Control View.
     BCOVPUIBasicControlView *controlView = [BCOVPUIBasicControlView basicControlViewWithVODLayout];
     self.playerView = [[BCOVPUIPlayerView alloc] initWithPlaybackController:self.playbackController options:nil controlsView:controlView];
-    self.playerView.frame = self.videoView.bounds;
-    self.playerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
-Then, add the BCOVPUIPlayerView to your video container, `videoView`.
-
     // Add BCOVPUIPlayerView to your video view.
     [self.videoView addSubview:self.playerView];
+
+You'll need to set up the layout for the player view, you can do this with Auto Layout or the older Springs & Struts approach. 
+
+**Springs & Struts:**
+
+Set the player view to match the video container from your layout (`videoView`) when it resizes.
+
+    self.playerView.frame = self.videoView.bounds;
+    self.playerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;   
+
+**Auto Layout**
+
+Set the `translatesAutoresizingMaskIntoConstraints` on BCOVPUIPlayerView to `NO`.
+
+    self.videoView.translatesAutoresizingMaskIntoConstraints = NO;
+
+Then add the constraints for the layout; setting the top, right, left and bottom anchors of your BCOVPUIPlayerView to equal that of `videoView` 
+
+    [NSLayoutConstraint activateConstraints:@[
+                                              [self.playerView.topAnchor constraintEqualToAnchor:self.videoView.topAnchor],
+                                              [self.playerView.rightAnchor constraintEqualToAnchor:self.videoView.rightAnchor],
+                                              [self.playerView.leftAnchor constraintEqualToAnchor:self.videoView.leftAnchor],
+                                              [self.playerView.bottomAnchor constraintEqualToAnchor:self.videoView.bottomAnchor],
+                                              ]];
 
 The last step is specific to FreeWheel. In your adContextPolicy, be sure to set your video display base to the player view's content overlay view. This allows FreeWheel ads to play over the video, but keeps the ad controls above the FreeWheel ad.
 
