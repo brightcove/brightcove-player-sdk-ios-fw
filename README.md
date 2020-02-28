@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.7.0.912
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.7.1.940
 
 Requirements
 ============
@@ -226,33 +226,16 @@ The PlayerUI is highly customizable. For more information and sample code, pleas
 
 [BCOVSDK]: https://github.com/brightcove/brightcove-player-sdk-ios
 
-Seeking Without Ads
+Seek Without Ads
 ===========
-Use `-[BCOVPlaybackController seekWithoutAds:(CMTime)time completionHandler:(void (^)(BOOL finished))completion]` to resume playback at a specific time without forcing the user to watch ads scheduled before `time`. When using `seekWithoutAds:completionHandler:`, `autoPlay` should be disabled in the `BCOVPlaybackController`. `seekWithoutAds:completionHandler:` should be called on or after receiving `kBCOVPlaybackSessionLifecycleEventReady` in your `playbackController:playbackSession:didReceiveLifecycleEvent` delegate method.
 
-The `shutter` and `shutterFadeTime` properties of the `BCOVPlaybackController` can be used along with `seekWithoutAds:completionHandler:` to hide frame-flicker which can occur as the AVPlayer loads assets. In your BCOVPlaybackController setup code, close the shutter to hide the player view:
+Use `-[BCOVPlaybackController seekWithoutAds:(CMTime)seekToTime completionHandler:(void (^)(BOOL finished))completion]` to resume playback at a specific time without forcing the user to watch ads scheduled before `seekToTime`.
 
-```
-  NSObject<BCOVPlaybackController> *playbackController;
-        
-  playbackController = [sdkManager createFWPlaybackControllerWithAdContextPolicy:nil
-                                                                    viewStrategy:nil];
-  playbackController.delegate = self;
-        
-  if (self.willSeekWithoutAds)
-  {
-    // set the shutter fade time to zero to hide the player view immediately.
-    playbackController.shutterFadeTime = 0.0;
-    playbackController.shutter = YES;
-    
-    // disable autoPlay when resuming playback.
-    playbackController.autoPlay = NO;
-  }
-```
+In preparation for `seekWithoutAds:completionHandler:`, disable `autoPlay` when setting up the `BCOVPlaybackController`.
 
-Apple recommends waiting for the status of an AVPlayerItem to change to ready-to-play before using the AVPlayerItem; call `seekWithoutAds:completionHandler:` in the `playbackController:playbackSession:didReceiveLifecycleEvent` method of your `BCOVPlaybackControllerDelegate` delegate.
+Apple recommends waiting for the status of an AVPlayerItem to change to ready-to-play before using the AVPlayerItem. Therefore, call `seekWithoutAds:completionHandler:` in the `kBCOVPlaybackSessionLifecycleEventReady` handler of the `playbackController:playbackSession:didReceiveLifecycleEvent` method of your `BCOVPlaybackControllerDelegate`.
 
-```
+```objective-c
 - (void)playbackController:(NSObject<BCOVPlaybackController>*)controller
            playbackSession:(NSObject<BCOVPlaybackSession>*)session
   didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
@@ -260,13 +243,14 @@ Apple recommends waiting for the status of an AVPlayerItem to change to ready-to
   if ([kBCOVPlaybackSessionLifecycleEventReady isEqualToString:lifecycleEvent.eventType])
   {
 
-    if (self.willSeekWithoutAds)
+    // self.resumePlayback is a hypothetical instance variable used here for illustration.
+    if (self.resumePlayback)
     {
       __weak typeof(controller) weakController = controller;
 
       // seek without playing ads which are scheduled before the seek time, i.e. resume playback.
       [controller seekWithoutAds:CMTimeMake(seekWithoutAdsValue, seekWithoutAdsTimescale)
-             completionHandler:^(BOOL finished){
+               completionHandler:^(BOOL finished) {
 
         if (!finished)
         {
@@ -280,8 +264,8 @@ Apple recommends waiting for the status of an AVPlayerItem to change to ready-to
           strongController.shutterFadeTime = 0.25;
           strongController.shutter = NO;
 
-          // turn off seeking without ads - especially important if this player is being used with a playlist
-          self.willSeekWithoutAds = NO;
+          // turn off seek without ads - especially important if this player is being used with a playlist
+          self.resumePlayback = NO;
         }
 
       }];
@@ -290,7 +274,27 @@ Apple recommends waiting for the status of an AVPlayerItem to change to ready-to
 }
 ```
 
-Note that with Seeking Without Ads enabled in your app, you will still see the network traffic that normally occurs as part of setting up the FreeWheel plugin. This traffic is necessary for proper plugin setup, and does not affect the Seeking Without Ads functionality.
+The `shutter` and `shutterFadeTime` properties of the `BCOVPlaybackController` can be used along with `seekWithoutAds:completionHandler:` to hide frame-flicker which can occur as the AVPlayer loads assets. In your BCOVPlaybackController set-up code, enable the shutter to hide the player view:
+
+```objective-c
+  NSObject<BCOVPlaybackController> *playbackController;
+        
+  playbackController = [sdkManager createFWPlaybackControllerWithAdContextPolicy:nil
+                                                                    viewStrategy:nil];
+  playbackController.delegate = self;
+        
+  if (self.resumePlayback)
+  {
+    // set the shutter fade time to zero to hide the player view immediately.
+    playbackController.shutterFadeTime = 0.0;
+    playbackController.shutter = YES;
+    
+    // disable autoPlay when resuming playback.
+    playbackController.autoPlay = NO;
+  }
+```
+
+Note that when Seek Without Ads is used in your app, you might observe network traffic which normally occurs as part of setting up the IMA plugin. This traffic is necessary for proper plugin setup, and does not affect the Seek Without Ads functionality.
 
 Customizing Plugin Behavior
 ===========
