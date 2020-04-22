@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.7.4.1018
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.7.5.1079
 
 Requirements
 ============
@@ -43,9 +43,9 @@ Manual
 
 To add the FreeWheel Plugin for Brightcove Player SDK to your project manually:
 
-1. Install the latest version of the [Brightcove Player SDK][bcovsdk].
+1. Install the latest version of the [Brightcove Player SDK][bcovsdk] and follow instrucions for installing the [**Static Framework**][https://github.com/brightcove/brightcove-player-sdk-ios/#ManualInstallation] .
 2. Download the latest zipped release of the plugin from our [release page][release].
-3. Add the 'BrightcoveFW.framework' to your project.
+3. Add the 'BrightcoveFW.framework' to your project.  You can do this by right-clicking on the Frameworks folder and choose "Add Files To" option and select the BrightcoveFW.framework from the path where it is stored.
 4. On the "Build Settings" tab of your application target, ensure that the "Framework Search Paths" include the path to the framework. This should have been done automatically unless the framework is stored under a different root directory than your project.
 5. On the "Build Phases" tab of your application target, add the following to the "Link
     Binary With Libraries" phase:
@@ -58,7 +58,7 @@ Imports
 --------------
 The FreeWheel Plugin for Brightcove Player SDK can be imported into code a few different ways; `@import BrightcoveFW;`, `#import <BrightcoveFW/BrightcoveFW.h>` or `#import <BrightcoveFW/[specific class].h>`.
 
-[bcovsdk]: https://github.com/brightcove/brightcove-player-sdk-ios
+[bcovsdk]: https://github.com/brightcove/brightcove-player-sdk-ios/releases
 [cocoapods]: http://cocoapods.org
 [podspecs]: https://github.com/brightcove/BrightcoveSpecs/tree/master/Brightcove-Player-FreeWheel
 [release]: https://github.com/brightcove/brightcove-player-sdk-ios-fw/releases
