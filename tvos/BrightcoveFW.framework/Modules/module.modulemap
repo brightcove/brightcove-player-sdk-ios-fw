@@ -1,6 +1,0 @@
-framework module BrightcoveFW {
-  umbrella header "BrightcoveFW.h"
-
-  export *
-  module * { export * }
-}
