@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.8.1.1355
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.8.2.1421
 
 Requirements
 ============
@@ -17,7 +17,7 @@ Installation
 
 The FreeWheel Plugin for Brightcove Player SDK provides a static library framework for installation. A dynamic framework will be added in the future when FreeWheel releases a dylib version.
 
-The FreeWheel Plugin for Brightcove Player SDK has been integrated with version 6.25.0 of the FreeWheel AdManager framework which is available from the [MRM Integration SDK Downloads](https://hub.freewheel.tv/display/techdocs/MRM+Integration+SDK+Downloads) page.
+The FreeWheel Plugin for Brightcove Player SDK has been integrated with version 6.38.0 of the FreeWheel AdManager framework which is available from the [AdManager SDK Integration Downloads](https://hub.freewheel.tv/display/techdocs/AdManager+SDK+Integration+Downloads) page.
 
 CocoaPods
 --------------
@@ -135,8 +135,6 @@ The code broken down into steps:
 1. You create the same ad context that would create if you were using FreeWheel's iOS SDK directly, using the SDK manager created in step 1. This is where you would register for companion slots, turn on default ad controls, or any other settings you need to change. This block will get called before each new session is delivered.
 
 \* Note that BCOVFWSessionProvider is not tested for use with other advertising session providers, such as BCOVIMASessionProvider. Also note that BCOVFWSessionProvider should come after any other session providers in the chain passed to the manager when constructing the playback controller.
-
-If you have questions or need help, visit the [Brightcove Native Player SDK support forum](https://groups.google.com/forum/#!forum/brightcove-native-player-sdks). If you are unsure what your ad settings are or have questions regarding what FWContext and other FW classes, please contact FreeWheel support at [http://freewheel.tv](http://freewheel.tv).
 
 Play and Pause
 ===========
@@ -324,7 +322,9 @@ Handling Seeks
 --------------------------
 When seeking over multiple ad pods (like two midrolls slots, at different positions), the SDK provides a convenience mechanism to determine which pods get played. This can be modified by changing the default `BCOVCuePointProgressPolicy` on `BCOVFWSessionProviderOptions`. For more information on the `BCOVCuePointProgressPolicy`, please consult the `BCOVFWSessionProvider.h` file.
 
-
+Support
+=======
+If you have questions, need help or want to provide feedback, please use the [Support Portal](https://supportportal.brightcove.com/s/login/) or contact your Account Manager. To receive notification of new SDK software releases, subscribe to the Brightcove Native Player SDKs [Google Group](https://groups.google.com/g/brightcove-native-player-sdks). If you are unsure what your ad settings are or have questions regarding what FWContext and other FW classes, please contact FreeWheel support at [http://freewheel.tv](http://freewheel.tv).
 
 
 
