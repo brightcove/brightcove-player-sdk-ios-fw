@@ -12,6 +12,9 @@
 
 #import "BCOVFWSessionProvider.h"
 
+extern NSString * const kBCOVFWLifecycleEventAdError;
+extern NSString * const kBCOVFWLifecycleEventPropertyKeyAdError;
+
 
 /**
  * Category methods added to BCOVPlayerSDKManager to support FW.

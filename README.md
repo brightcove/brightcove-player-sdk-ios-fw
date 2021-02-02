@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.8.3.1457
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.8.4.1493
 
 Requirements
 ============
@@ -321,6 +321,24 @@ By default, the SDK will wait to call the `BCOVFWSessionProviderAdContextPolicy`
 Handling Seeks
 --------------------------
 When seeking over multiple ad pods (like two midrolls slots, at different positions), the SDK provides a convenience mechanism to determine which pods get played. This can be modified by changing the default `BCOVCuePointProgressPolicy` on `BCOVFWSessionProviderOptions`. For more information on the `BCOVCuePointProgressPolicy`, please consult the `BCOVFWSessionProvider.h` file.
+
+Tracking FreeWheel Errors
+=======
+
+FreeWheel error events (`FWAdErrorEvent`) encountered via the `FWAdEventNotification` will be passed through to the `playbackController:playbackSession:didReceiveLifecycleEvent:` delegate method with an event type of `kBCOVFWLifecycleEventAdError`. The entire userInfo object that the FreeWheel SDK sends along with the notification is included in the events properties and can be accessed with the `kBCOVFWLifecycleEventPropertyKeyAdError` key. 
+
+Here is an example of how to catch these errors:
+
+```
+- (void)playbackController:(id<BCOVPlaybackController>)controller playbackSession:(id<BCOVPlaybackSession>)session didReceiveLifecycleEvent:(BCOVPlaybackSessionLifecycleEvent *)lifecycleEvent
+{
+    if ([kBCOVFWLifecycleEventAdError isEqualToString:lifecycleEvent.eventType])
+    {
+        NSDictionary *errorInfo = lifecycleEvent.properties[kBCOVFWLifecycleEventPropertyKeyAdError];
+        NSLog(@"FreeWheel Error Encountered: %@", errorInfo[FWInfoKeyErrorInfo]);
+    }
+}
+```
 
 Support
 =======
