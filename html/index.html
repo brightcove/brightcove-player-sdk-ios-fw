@@ -44,7 +44,7 @@
 					<div class="section section-overview index-overview">
 						
 						
-						<h1>FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.9.1.1726</h1>
+						<h1>FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.10.0.1786</h1>
 
 <h1>Requirements</h1>
 
@@ -74,10 +74,21 @@
 
 <p>Static Framework example:</p>
 
-<pre><code>source 'https://github.com/brightcove/BrightcoveSpecs.git'
+<p>```bash
+source &lsquo;<a href="https://github.com/brightcove/BrightcoveSpecs.git" title="">https://github.com/brightcove/BrightcoveSpecs.git'</a></p>
 
-pod 'Brightcove-Player-FreeWheel'
-</code></pre>
+<p>pod &lsquo;Brightcove-Player-FreeWheel&rsquo;
+```</p>
+
+<p>XCFramework will be installed appending the <code>/XCFramework</code> subspec in the pod.</p>
+
+<p>XCFramework example:</p>
+
+<p>```bash
+source &lsquo;https://github.com/brightcove/BrightcoveSpecs.git&rsquo;</p>
+
+<p>pod &lsquo;Brightcove-Player-FreeWheel/XCFramework&rsquo;
+```</p>
 
 <p>When updating your installation, it&rsquo;s a good idea to refresh the local copy of your BrightcoveSpecs repository so that you have the latest podspecs locally, just like you would update your CococaPods master repository.</p>
 
@@ -88,7 +99,7 @@ pod 'Brightcove-Player-FreeWheel'
 <p>To add the FreeWheel Plugin for Brightcove Player SDK to your project manually:</p>
 
 <ol>
-<li>Install the latest version of the <a href="https://github.com/brightcove/brightcove-player-sdk-ios">Brightcove Player SDK</a> and follow instrucions for installing the [<strong>Static Framework</strong>][<a href="https://github.com/brightcove/brightcove-player-sdk-ios/">https://github.com/brightcove/brightcove-player-sdk-ios/</a>#ManualInstallation] .</li>
+<li>Install the latest version of the <a href="https://github.com/brightcove/brightcove-player-sdk-ios">Brightcove Player SDK</a> and follow instrucions for installing the <strong><a href="https://github.com/brightcove/brightcove-player-sdk-ios/#ManualInstallation">Static Framework</a></strong>.</li>
 <li>Download the latest zipped release of the plugin from our <a href="https://github.com/brightcove/brightcove-player-sdk-ios-fw/releases">release page</a>.</li>
 <li>Add the &lsquo;BrightcoveFW.framework&rsquo; to your project.  You can do this by right-clicking on the Frameworks folder and choose &ldquo;Add Files To&rdquo; option and select the BrightcoveFW.framework from the path where it is stored.</li>
 <li>On the &ldquo;Build Settings&rdquo; tab of your application target, ensure that the &ldquo;Framework Search Paths&rdquo; include the path to the framework. This should have been done automatically unless the framework is stored under a different root directory than your project.</li>
@@ -106,6 +117,13 @@ pod 'Brightcove-Player-FreeWheel'
 </ul>
 </li>
 <li>Install the FreeWheel library, which must be retrieved from your FreeWheel account.</li>
+<li>(<strong>Universal Framework</strong> only) On the &ldquo;Build Phases&rdquo; tab, add a &ldquo;Run Script&rdquo; phase with the command <code>bash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightcoveFW.framework/strip-frameworks.sh</code>. Check &ldquo;Run script only when installing&rdquo;. This will remove unneeded architectures from the build, which is important for App Store submission.</li>
+<li>(<strong>Apple Silicon</strong> only) On the &ldquo;Build Settings&rdquo; tab of your application target:
+
+<ul>
+<li>Ensure that <code>arm64</code> has been added to your &ldquo;Excluded Architectures&rdquo; build setting for <code>Any iOS Simulator SDK</code>.</li>
+</ul>
+</li>
 </ol>
 
 
@@ -393,6 +411,27 @@ playbackController.autoPlay = NO;
 }
 </code></pre>
 
+<h1>AVPlayerViewController Support</h1>
+
+<p><strong>Displaying Ad UI</strong></p>
+
+<p>If you&rsquo;d like to display your own Ad UI during ad playback you can use the <code>playbackController:playbackSession:didEnterAdSequence:</code>  and <code>playbackController:playbackSession:didExitAdSequence:</code>  delegate methods. Here is an example:</p>
+
+<pre><code>#pragma mark BCOVPlaybackControllerDelegate
+
+- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didEnterAd:(BCOVAd *)ad
+{
+    [self displayAdUI:CMTimeGetSeconds(ad.duration)];
+}
+
+- (void)playbackController:(id&lt;BCOVPlaybackController&gt;)controller playbackSession:(id&lt;BCOVPlaybackSession&gt;)session didExitAdSequence:(BCOVAdSequence *)adSequence
+{
+    ...
+
+    [self hideAdUI];
+}
+</code></pre>
+
 <h1>Support</h1>
 
 <p>If you have questions, need help or want to provide feedback, please use the <a href="https://supportportal.brightcove.com/s/login/">Support Portal</a> or contact your Account Manager. To receive notification of new SDK software releases, subscribe to the Brightcove Native Player SDKs <a href="https://groups.google.com/g/brightcove-native-player-sdks">Google Group</a>. If you are unsure what your ad settings are or have questions regarding what FWContext and other FW classes, please contact FreeWheel support at <a href="http://freewheel.tv">http://freewheel.tv</a>.</p>
@@ -442,7 +481,7 @@ playbackController.autoPlay = NO;
 					<footer>
 						<div class="footer-copyright">
 							
-							<p class="copyright">Copyright &copy; 2021 Brightcove. All rights reserved. Updated: 2021-08-16</p>
+							<p class="copyright">Copyright &copy; 2021 Brightcove. All rights reserved. Updated: 2021-09-27</p>
 							
 							
 							<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
