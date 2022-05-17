@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.10.4.2043
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.10.5.2109
 
 ## Installation
 
@@ -51,6 +51,23 @@ To add the FreeWheel Plugin for Brightcove Player SDK to your project manually:
 1. (**Universal Framework** only) On the "Build Phases" tab, add a "Run Script" phase with the command `bash ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightcoveFW.framework/strip-frameworks.sh`. Check "Run script only when installing". This will remove unneeded architectures from the build, which is important for App Store submission.
 1. (**Apple Silicon** only) On the "Build Settings" tab of your application target:
     * Ensure that `arm64` has been added to your "Excluded Architectures" build setting for `Any iOS Simulator SDK`.
+    
+### Swift Package Manager
+
+To add the FreeWheel Plugin for Brightcove Player SDK to your project with Swift Package Manager: 
+
+1. First [follow the steps][corespm] to add the Core XCFramework with Swift Package Mananger.
+1. Add the FreeWheel package to Swift Package Manager using https://github.com/brightcove/brightcove-player-sdk-ios-fw.git.
+1. Link to the following libraries:
+    * libxml2.tbd
+    * CoreLocation
+    * MessageUI
+    * WebKit
+1. On the "Build Settings" tab of your application target:
+    * Ensure that `-ObjC` has been added to the "Other Linker Flags" build setting.
+1. Install the FreeWheel library, which must be retrieved from your FreeWheel account.
+
+[corespm]: https://github.com/brightcove/brightcove-player-sdk-ios#SwiftPackageManager
 
 ### Imports
 
