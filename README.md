@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.10.5.2109
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.10.6.2156
 
 ## Installation
 
@@ -57,7 +57,7 @@ To add the FreeWheel Plugin for Brightcove Player SDK to your project manually:
 To add the FreeWheel Plugin for Brightcove Player SDK to your project with Swift Package Manager: 
 
 1. First [follow the steps][corespm] to add the Core XCFramework with Swift Package Mananger.
-1. Add the FreeWheel package to Swift Package Manager using https://github.com/brightcove/brightcove-player-sdk-ios-fw.git.
+1. Add the FreeWheel package to Swift Package Manager using `https://github.com/brightcove/brightcove-player-sdk-ios-fw.git`.
 1. Link to the following libraries:
     * libxml2.tbd
     * CoreLocation
@@ -374,6 +374,12 @@ If you'd like to display your own Ad UI during ad playback you can use the `play
     [self hideAdUI];
 }
 ```
+
+## Picture-in-Picture
+
+The FreeWheel plugin can be used with Brightcove's Picture-in-Picture support.
+
+Any ad cue-points encountered after Picture-in-Picture has become active will be skipped. The Picture-in-Picture functionality is disabled during ad playback; the Picture-in-Picture button will be greyed out and putting the app into the background while an ad is playing will not result in a Picture-in-Picture window.
 
 ## Support
 
