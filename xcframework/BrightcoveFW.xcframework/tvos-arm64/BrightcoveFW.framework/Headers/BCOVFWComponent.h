@@ -56,11 +56,11 @@ extern NSString * const kBCOVFWLifecycleEventPropertyKeyAdError;
  * If FreeWheel has requested that the content video be in the paused state,
  * this will be YES. Otherwise it will be NO.
  */
-@property (nonatomic, assign, readonly, getter=isPausedOnFreewheelsRequest) BOOL pausedOnFreewheelsRequest;
+@property (nonatomic, assign, readonly, getter=isPausedOnFreeWheelRequest) BOOL pausedOnFreeWheelRequest;
 
 /**
  * Plays the video and updates FreeWheel with a video state of FW_VIDEO_STATE_PLAYING.
- * This method will only play the video if isPausedOnFreewheelsRequest returns NO.
+ * This method will only play the video if isPausedOnFreewheelRequest returns NO.
  *
  * On first play, before playing content, the session will process all preroll ads before starting
  * the content.
