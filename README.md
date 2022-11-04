@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.11.0.2264
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.11.1.2309
 
 ## Installation
 
@@ -15,9 +15,15 @@ The FreeWheel SDK **is not** included in this Pod.  You **must** manually add th
 #### Framework example
 
 ```bash
+source 'https://github.com/CocoaPods/Specs'
 source 'https://github.com/brightcove/BrightcoveSpecs.git'
 
-pod 'Brightcove-Player-FreeWheel'
+platform :ios, '11.4'
+use_frameworks!
+
+target 'MyVideoPlayer' do
+  pod 'Brightcove-Player-FreeWheel'
+end
 ```
 
 #### XCFramework example
@@ -25,9 +31,15 @@ pod 'Brightcove-Player-FreeWheel'
 XCFrameworks can be installed by appending the `/XCFramework` subspec to the pod name.
 
 ```bash
+source 'https://github.com/CocoaPods/Specs'
 source 'https://github.com/brightcove/BrightcoveSpecs.git'
 
-pod 'Brightcove-Player-FreeWheel/XCFramework'
+platform :ios, '11.4'
+use_frameworks!
+
+target 'MyVideoPlayer' do
+  pod 'Brightcove-Player-FreeWheel/XCFramework'
+end
 ```
 
 When updating your installation, it's a good idea to refresh the local copy of your BrightcoveSpecs repository so that you have the latest podspecs locally, just like you would update your CococaPods master repository.
