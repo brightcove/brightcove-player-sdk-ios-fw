@@ -2,7 +2,7 @@
 // BCOVFWSessionProvider.h
 // BrightcoveFW
 //
-// Copyright (c) 2022 Brightcove, Inc. All rights reserved.
+// Copyright (c) 2023 Brightcove, Inc. All rights reserved.
 // License: https://accounts.brightcove.com/en/terms-and-conditions
 //
 
@@ -81,13 +81,6 @@ typedef BCOVFWContext*(^BCOVFWSessionProviderAdContextPolicy)(BCOVVideo *video, 
  * Optional configuration for FW session providers.
  */
 @interface BCOVFWSessionProviderOptions : NSObject
-
-/**
- * Whether or not to wait for the AVPlayer item to report a duration before calling
- * the adContextPolicy. When set to NO, the duration passed into the BCOVFWSessionProviderAdContextPolicy
- * block may not be accurate. Defaults to Yes.
- */
-@property (nonatomic, assign, getter=shouldWaitForAVPlayerDuration) BOOL waitForAVPlayerDuration;
 
 /**
  * The number of seconds the session provider will wait for an ad request

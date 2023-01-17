@@ -1,10 +1,10 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.11.2.2333
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.12.0.2391
 
 ## Installation
 
-The FreeWheel Plugin for Brightcove Player SDK provides a static library framework for installation. A dynamic framework will be added in the future when FreeWheel releases a dylib version.
+The FreeWheel Plugin for Brightcove Player SDK provides a dynamic library framework and an XCFramework for installation.
 
-The FreeWheel Plugin for Brightcove Player SDK has been integrated with version 6.38.0 of the FreeWheel AdManager framework which is available from the [AdManager SDK Integration Downloads](https://hub.freewheel.tv/display/techdocs/AdManager+SDK+Integration+Downloads) page.
+The FreeWheel Plugin for Brightcove Player SDK has been integrated with version 6.52.0 of the FreeWheel AdManager framework which is available from the [AdManager SDK Integration Downloads](https://hub.freewheel.tv/display/techdocs/AdManager+SDK+Integration+Downloads) page.
 
 ### CocoaPods
 
@@ -50,7 +50,7 @@ Typically if you use `pod update` in Terminal this will happen automatically, or
 
 To add the FreeWheel Plugin for Brightcove Player SDK to your project manually:
 
-1. Install the latest version of the [Brightcove Player SDK][bcovsdk] and follow instrucions for installing the **[Static Framework](https://github.com/brightcove/brightcove-player-sdk-ios/#ManualInstallation)**.
+1. Install the latest version of the [Brightcove Player SDK][bcovsdk].
 1. Download the latest zipped release of the plugin from our [release page][release].
 1. Add the 'BrightcoveFW.framework' to your project.  You can do this by right-clicking on the Frameworks folder and choose "Add Files To" option and select the BrightcoveFW.framework from the path where it is stored.
 1. On the "Build Settings" tab of your application target, ensure that the "Framework Search Paths" include the path to the framework. This should have been done automatically unless the framework is stored under a different root directory than your project.
@@ -79,7 +79,7 @@ To add the FreeWheel Plugin for Brightcove Player SDK to your project with Swift
     * Ensure that `-ObjC` has been added to the "Other Linker Flags" build setting.
 1. Install the FreeWheel library, which must be retrieved from your FreeWheel account.
 
-[corespm]: https://github.com/brightcove/brightcove-player-sdk-ios#SwiftPackageManager
+[corespm]: https://github.com/brightcove/brightcove-player-sdk-ios#swift-package-manager
 
 ### Imports
 
