@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.12.0.2391
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 6.12.1.2421
 
 ## Installation
 
@@ -114,16 +114,19 @@ Playing video with the Brightcove Player SDK for iOS with FreeWheel ads:
     
         BCOVPlaybackService *service = [[BCOVPlaybackService alloc] initWithAccuntID:accountId
                                                                            policyKey:policyKey];
-        [service findVideoWithVideoID:videoId
-                           parameters:nil
-                           completion:^(BCOVVideo    *video,
-                                        NSDictionary *jsonResponse,
-                                        NSError      *error) {
-    
-                                     [playbackController setVideos:@[ video ]];
-                                     [playbackController play];
-                                     
-                                 }];
+        NSDictionary *configuration = @{
+            kBCOVPlaybackServiceConfigurationKeyAssetID:videoId
+        };
+        [service findVideoWithConfiguration:configuration
+                            queryParameters:nil
+                                 completion:^(BCOVVideo    *video,
+                                              NSDictionary *jsonResponse,
+                                              NSError      *error) {
+
+            [playbackController setVideos:@[ video ]];
+            [playbackController play];
+
+        }];
     }
     
     - (BCOVFWSessionProviderAdContextPolicy)adContextPolicy
