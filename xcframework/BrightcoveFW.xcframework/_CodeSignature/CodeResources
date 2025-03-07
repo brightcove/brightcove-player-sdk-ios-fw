@@ -6,27 +6,27 @@
 	<dict>
 		<key>ios-arm64/BrightcoveFW.framework/BrightcoveFW</key>
 		<data>
-		XVomGpqdtJXySe2qFG56t95Ii9k=
+		u4ttD3qBQwNu5MtBHQiQd3xIu6g=
 		</data>
 		<key>ios-arm64/BrightcoveFW.framework/Headers/BCOVFWComponent.h</key>
 		<data>
-		CLRJ295/0NiVrDJ4+E22TgFdyLY=
+		dFSUVWLFrj9ZwtzGuxk/gIfoIIw=
 		</data>
 		<key>ios-arm64/BrightcoveFW.framework/Headers/BCOVFWConstants.h</key>
 		<data>
-		W065J44yJho2Qh8ITL1OSRD5Lio=
+		SQ0lN7D5NiSwDjaW8arK3EYvYII=
 		</data>
 		<key>ios-arm64/BrightcoveFW.framework/Headers/BCOVFWSessionProvider.h</key>
 		<data>
-		0XihzifyrAxi/CY6ZPDcUAmWgv8=
+		uKySoNTmHpFu+5GK7qME+enGuxU=
 		</data>
 		<key>ios-arm64/BrightcoveFW.framework/Headers/BrightcoveFW.h</key>
 		<data>
-		ytvEJSeAEWV+gg6XTH5n+QkqBaM=
+		yh8Bnxiui8bD7M1PxJyu6zr2hdg=
 		</data>
 		<key>ios-arm64/BrightcoveFW.framework/Info.plist</key>
 		<data>
-		xcnLcIb5BV0N1r8Qz4zHxVmXQNQ=
+		ps7c5Bu02FgE0Vx/BpknU8VrvQo=
 		</data>
 		<key>ios-arm64/BrightcoveFW.framework/Modules/module.modulemap</key>
 		<data>
@@ -34,27 +34,27 @@
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/BrightcoveFW</key>
 		<data>
-		oh+Ddn2clHmTVoL9GbJHsygeh4s=
+		SqgiynTqhjPMyZI49tUc+/H8j9I=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWComponent.h</key>
 		<data>
-		CLRJ295/0NiVrDJ4+E22TgFdyLY=
+		dFSUVWLFrj9ZwtzGuxk/gIfoIIw=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWConstants.h</key>
 		<data>
-		W065J44yJho2Qh8ITL1OSRD5Lio=
+		SQ0lN7D5NiSwDjaW8arK3EYvYII=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWSessionProvider.h</key>
 		<data>
-		0XihzifyrAxi/CY6ZPDcUAmWgv8=
+		uKySoNTmHpFu+5GK7qME+enGuxU=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BrightcoveFW.h</key>
 		<data>
-		ytvEJSeAEWV+gg6XTH5n+QkqBaM=
+		yh8Bnxiui8bD7M1PxJyu6zr2hdg=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Info.plist</key>
 		<data>
-		xm8fpgQ71P+NhMssLQiyIskZxoI=
+		NLi6rOq7wZ4j5+qPNS4GlMlTiMo=
 		</data>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Modules/module.modulemap</key>
 		<data>
@@ -62,27 +62,27 @@
 		</data>
 		<key>tvos-arm64/BrightcoveFW.framework/BrightcoveFW</key>
 		<data>
-		HDCRhSWbupslJQsmCyvOqqSp8Ek=
+		egMaBpMP0RIThv7InfOFdfdJwKs=
 		</data>
 		<key>tvos-arm64/BrightcoveFW.framework/Headers/BCOVFWComponent.h</key>
 		<data>
-		CLRJ295/0NiVrDJ4+E22TgFdyLY=
+		dFSUVWLFrj9ZwtzGuxk/gIfoIIw=
 		</data>
 		<key>tvos-arm64/BrightcoveFW.framework/Headers/BCOVFWConstants.h</key>
 		<data>
-		W065J44yJho2Qh8ITL1OSRD5Lio=
+		SQ0lN7D5NiSwDjaW8arK3EYvYII=
 		</data>
 		<key>tvos-arm64/BrightcoveFW.framework/Headers/BCOVFWSessionProvider.h</key>
 		<data>
-		0XihzifyrAxi/CY6ZPDcUAmWgv8=
+		uKySoNTmHpFu+5GK7qME+enGuxU=
 		</data>
 		<key>tvos-arm64/BrightcoveFW.framework/Headers/BrightcoveFW.h</key>
 		<data>
-		ytvEJSeAEWV+gg6XTH5n+QkqBaM=
+		yh8Bnxiui8bD7M1PxJyu6zr2hdg=
 		</data>
 		<key>tvos-arm64/BrightcoveFW.framework/Info.plist</key>
 		<data>
-		niYYhjitsDg7Aya1e/kmBMjzCCY=
+		kt8g2LVzD3Tbp7DSbjMDetdMJT0=
 		</data>
 		<key>tvos-arm64/BrightcoveFW.framework/Modules/module.modulemap</key>
 		<data>
@@ -90,27 +90,27 @@
 		</data>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/BrightcoveFW</key>
 		<data>
-		vS+/JLpR3jyy4XUXP6nz2jNn3ko=
+		6pOnyJzaR7UfvPD2fArpLiJTFjQ=
 		</data>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWComponent.h</key>
 		<data>
-		CLRJ295/0NiVrDJ4+E22TgFdyLY=
+		dFSUVWLFrj9ZwtzGuxk/gIfoIIw=
 		</data>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWConstants.h</key>
 		<data>
-		W065J44yJho2Qh8ITL1OSRD5Lio=
+		SQ0lN7D5NiSwDjaW8arK3EYvYII=
 		</data>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWSessionProvider.h</key>
 		<data>
-		0XihzifyrAxi/CY6ZPDcUAmWgv8=
+		uKySoNTmHpFu+5GK7qME+enGuxU=
 		</data>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BrightcoveFW.h</key>
 		<data>
-		ytvEJSeAEWV+gg6XTH5n+QkqBaM=
+		yh8Bnxiui8bD7M1PxJyu6zr2hdg=
 		</data>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Info.plist</key>
 		<data>
-		FFNolWw9lCsAEWm/SH/G6bxYMZs=
+		D2Kz9EXqe1j4+3VBrud4oxdMnkg=
 		</data>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Modules/module.modulemap</key>
 		<data>
@@ -123,66 +123,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			XVomGpqdtJXySe2qFG56t95Ii9k=
+			u4ttD3qBQwNu5MtBHQiQd3xIu6g=
 			</data>
 			<key>hash2</key>
 			<data>
-			xQ8+jv7+OqbEiX+J7ZoVN5T1gGco/H+4l6zEuR9VBaY=
+			ywoqqtUkHChrCjLTZ7WcuzHJ9/GBvH2/ifI1/oNj9WI=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveFW.framework/Headers/BCOVFWComponent.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CLRJ295/0NiVrDJ4+E22TgFdyLY=
+			dFSUVWLFrj9ZwtzGuxk/gIfoIIw=
 			</data>
 			<key>hash2</key>
 			<data>
-			eeAn+fAb0F3CirBzCO5GaEhcPoiWMLZy06y82x2csY4=
+			+aj3Q/chI+p4yhgoOV5TKNDR37RnuHod2IQwx9N+Dag=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveFW.framework/Headers/BCOVFWConstants.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			W065J44yJho2Qh8ITL1OSRD5Lio=
+			SQ0lN7D5NiSwDjaW8arK3EYvYII=
 			</data>
 			<key>hash2</key>
 			<data>
-			n7dh3XeFMPVuXfkAXlXhv+csF4KhqL6nmUqqo4cYxuQ=
+			MZWpt9lYZ8FnBF3pGsQYTv+v7ZcGN/D7GmpntWWhoNo=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveFW.framework/Headers/BCOVFWSessionProvider.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			0XihzifyrAxi/CY6ZPDcUAmWgv8=
+			uKySoNTmHpFu+5GK7qME+enGuxU=
 			</data>
 			<key>hash2</key>
 			<data>
-			RbeqOZvp1SoA1w/C+DMH2e4VthHATZCLpbHaHmb6D5I=
+			FMOilblLNr36qTsId3KUVk3EADIcpIVjad+kKffE2JM=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveFW.framework/Headers/BrightcoveFW.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ytvEJSeAEWV+gg6XTH5n+QkqBaM=
+			yh8Bnxiui8bD7M1PxJyu6zr2hdg=
 			</data>
 			<key>hash2</key>
 			<data>
-			oQRrFTjniFbhKcwV7kfQBj42WX2tsZx+3OyR2CPDn2g=
+			F4YR5/4QznJHpoyTPK6u5njON68aTdgD4Kq3u9cP2LY=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveFW.framework/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xcnLcIb5BV0N1r8Qz4zHxVmXQNQ=
+			ps7c5Bu02FgE0Vx/BpknU8VrvQo=
 			</data>
 			<key>hash2</key>
 			<data>
-			OY5GI8zVZIn4ytwfB0scO7YB3FG3HTqbRJa2DCd9rZs=
+			lCsHnMqwUCUt0Vj3ia3g9XZvZ/UcSmwR/73yD+MMciY=
 			</data>
 		</dict>
 		<key>ios-arm64/BrightcoveFW.framework/Modules/module.modulemap</key>
@@ -200,66 +200,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			oh+Ddn2clHmTVoL9GbJHsygeh4s=
+			SqgiynTqhjPMyZI49tUc+/H8j9I=
 			</data>
 			<key>hash2</key>
 			<data>
-			n9/KjrH8K4FlF6pQuioyKX7Pz/s8qn24OYrNWOHApv0=
+			Pf0yATYo7PghAQqaWqHsIGAFLkO0zrV77tV43snvjho=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWComponent.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CLRJ295/0NiVrDJ4+E22TgFdyLY=
+			dFSUVWLFrj9ZwtzGuxk/gIfoIIw=
 			</data>
 			<key>hash2</key>
 			<data>
-			eeAn+fAb0F3CirBzCO5GaEhcPoiWMLZy06y82x2csY4=
+			+aj3Q/chI+p4yhgoOV5TKNDR37RnuHod2IQwx9N+Dag=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWConstants.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			W065J44yJho2Qh8ITL1OSRD5Lio=
+			SQ0lN7D5NiSwDjaW8arK3EYvYII=
 			</data>
 			<key>hash2</key>
 			<data>
-			n7dh3XeFMPVuXfkAXlXhv+csF4KhqL6nmUqqo4cYxuQ=
+			MZWpt9lYZ8FnBF3pGsQYTv+v7ZcGN/D7GmpntWWhoNo=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWSessionProvider.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			0XihzifyrAxi/CY6ZPDcUAmWgv8=
+			uKySoNTmHpFu+5GK7qME+enGuxU=
 			</data>
 			<key>hash2</key>
 			<data>
-			RbeqOZvp1SoA1w/C+DMH2e4VthHATZCLpbHaHmb6D5I=
+			FMOilblLNr36qTsId3KUVk3EADIcpIVjad+kKffE2JM=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BrightcoveFW.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ytvEJSeAEWV+gg6XTH5n+QkqBaM=
+			yh8Bnxiui8bD7M1PxJyu6zr2hdg=
 			</data>
 			<key>hash2</key>
 			<data>
-			oQRrFTjniFbhKcwV7kfQBj42WX2tsZx+3OyR2CPDn2g=
+			F4YR5/4QznJHpoyTPK6u5njON68aTdgD4Kq3u9cP2LY=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			xm8fpgQ71P+NhMssLQiyIskZxoI=
+			NLi6rOq7wZ4j5+qPNS4GlMlTiMo=
 			</data>
 			<key>hash2</key>
 			<data>
-			5/sduHR2DECBDrIFhYi0QYwr2RS9jNmy1HQzUQhFNTk=
+			hH3PnhHQt+EVGBOGgN4bRCrti8IYLQnCI6YRvpEVP2Q=
 			</data>
 		</dict>
 		<key>ios-arm64_x86_64-simulator/BrightcoveFW.framework/Modules/module.modulemap</key>
@@ -277,66 +277,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			HDCRhSWbupslJQsmCyvOqqSp8Ek=
+			egMaBpMP0RIThv7InfOFdfdJwKs=
 			</data>
 			<key>hash2</key>
 			<data>
-			wTs3bqGT8tUP9yyi08drZukhgbsUR5qYuQ+0xOOOZ/s=
+			Jceh/AJOWrW1JN3KSsWtV1v5XkGMkWB18Bhe2W4Dldw=
 			</data>
 		</dict>
 		<key>tvos-arm64/BrightcoveFW.framework/Headers/BCOVFWComponent.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CLRJ295/0NiVrDJ4+E22TgFdyLY=
+			dFSUVWLFrj9ZwtzGuxk/gIfoIIw=
 			</data>
 			<key>hash2</key>
 			<data>
-			eeAn+fAb0F3CirBzCO5GaEhcPoiWMLZy06y82x2csY4=
+			+aj3Q/chI+p4yhgoOV5TKNDR37RnuHod2IQwx9N+Dag=
 			</data>
 		</dict>
 		<key>tvos-arm64/BrightcoveFW.framework/Headers/BCOVFWConstants.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			W065J44yJho2Qh8ITL1OSRD5Lio=
+			SQ0lN7D5NiSwDjaW8arK3EYvYII=
 			</data>
 			<key>hash2</key>
 			<data>
-			n7dh3XeFMPVuXfkAXlXhv+csF4KhqL6nmUqqo4cYxuQ=
+			MZWpt9lYZ8FnBF3pGsQYTv+v7ZcGN/D7GmpntWWhoNo=
 			</data>
 		</dict>
 		<key>tvos-arm64/BrightcoveFW.framework/Headers/BCOVFWSessionProvider.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			0XihzifyrAxi/CY6ZPDcUAmWgv8=
+			uKySoNTmHpFu+5GK7qME+enGuxU=
 			</data>
 			<key>hash2</key>
 			<data>
-			RbeqOZvp1SoA1w/C+DMH2e4VthHATZCLpbHaHmb6D5I=
+			FMOilblLNr36qTsId3KUVk3EADIcpIVjad+kKffE2JM=
 			</data>
 		</dict>
 		<key>tvos-arm64/BrightcoveFW.framework/Headers/BrightcoveFW.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ytvEJSeAEWV+gg6XTH5n+QkqBaM=
+			yh8Bnxiui8bD7M1PxJyu6zr2hdg=
 			</data>
 			<key>hash2</key>
 			<data>
-			oQRrFTjniFbhKcwV7kfQBj42WX2tsZx+3OyR2CPDn2g=
+			F4YR5/4QznJHpoyTPK6u5njON68aTdgD4Kq3u9cP2LY=
 			</data>
 		</dict>
 		<key>tvos-arm64/BrightcoveFW.framework/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			niYYhjitsDg7Aya1e/kmBMjzCCY=
+			kt8g2LVzD3Tbp7DSbjMDetdMJT0=
 			</data>
 			<key>hash2</key>
 			<data>
-			nLbJwGAqs9mcQab4mrTdZdVdMI/dXBndpQNAE67NCLA=
+			VaV28RGezZgGhPa+BUSKXhBxHbzxLQQC1n0243P07DE=
 			</data>
 		</dict>
 		<key>tvos-arm64/BrightcoveFW.framework/Modules/module.modulemap</key>
@@ -354,66 +354,66 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vS+/JLpR3jyy4XUXP6nz2jNn3ko=
+			6pOnyJzaR7UfvPD2fArpLiJTFjQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			RTaQ3k/lJPbhm6Ba056wrXi80tNIeO336tmVCuV9Xo0=
+			RjTWfAt5fc0esKH3u6BIZ17iwrdhMuphrZ4OY4Y/VRM=
 			</data>
 		</dict>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWComponent.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			CLRJ295/0NiVrDJ4+E22TgFdyLY=
+			dFSUVWLFrj9ZwtzGuxk/gIfoIIw=
 			</data>
 			<key>hash2</key>
 			<data>
-			eeAn+fAb0F3CirBzCO5GaEhcPoiWMLZy06y82x2csY4=
+			+aj3Q/chI+p4yhgoOV5TKNDR37RnuHod2IQwx9N+Dag=
 			</data>
 		</dict>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWConstants.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			W065J44yJho2Qh8ITL1OSRD5Lio=
+			SQ0lN7D5NiSwDjaW8arK3EYvYII=
 			</data>
 			<key>hash2</key>
 			<data>
-			n7dh3XeFMPVuXfkAXlXhv+csF4KhqL6nmUqqo4cYxuQ=
+			MZWpt9lYZ8FnBF3pGsQYTv+v7ZcGN/D7GmpntWWhoNo=
 			</data>
 		</dict>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BCOVFWSessionProvider.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			0XihzifyrAxi/CY6ZPDcUAmWgv8=
+			uKySoNTmHpFu+5GK7qME+enGuxU=
 			</data>
 			<key>hash2</key>
 			<data>
-			RbeqOZvp1SoA1w/C+DMH2e4VthHATZCLpbHaHmb6D5I=
+			FMOilblLNr36qTsId3KUVk3EADIcpIVjad+kKffE2JM=
 			</data>
 		</dict>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Headers/BrightcoveFW.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ytvEJSeAEWV+gg6XTH5n+QkqBaM=
+			yh8Bnxiui8bD7M1PxJyu6zr2hdg=
 			</data>
 			<key>hash2</key>
 			<data>
-			oQRrFTjniFbhKcwV7kfQBj42WX2tsZx+3OyR2CPDn2g=
+			F4YR5/4QznJHpoyTPK6u5njON68aTdgD4Kq3u9cP2LY=
 			</data>
 		</dict>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Info.plist</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			FFNolWw9lCsAEWm/SH/G6bxYMZs=
+			D2Kz9EXqe1j4+3VBrud4oxdMnkg=
 			</data>
 			<key>hash2</key>
 			<data>
-			3Bq6ggy+sqXxpUK1DYG87HBjrwEbwn1wom53McZ1ZmU=
+			IfQJ9Z89kA5cgsmGoy4XieBwBFo7TKKOOBLhAuij72c=
 			</data>
 		</dict>
 		<key>tvos-arm64_x86_64-simulator/BrightcoveFW.framework/Modules/module.modulemap</key>
