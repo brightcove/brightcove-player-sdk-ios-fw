@@ -1,4 +1,4 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 7.0.11.5
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 7.1.0.7
 
 ## Installation
 
