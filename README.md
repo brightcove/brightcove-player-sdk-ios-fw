@@ -1,8 +1,8 @@
-# FreeWheel Plugin for Brightcove Player SDK for iOS, version 7.2.12.34
+# FreeWheel Plugin for Brightcove Player SDK for iOS, version 7.2.13.35
 
 ## Installation
 
-The FreeWheel Plugin for Brightcove Player SDK provides a dynamic library framework and an XCFramework for installation.
+The FreeWheel Plugin for Brightcove Player SDK is distributed as a dynamic XCFramework.
 
 The FreeWheel Plugin for Brightcove Player SDK has been integrated with version 6.52.0 of the FreeWheel AdManager framework which is available from the [AdManager SDK Integration Downloads](https://hub.freewheel.tv/display/techdocs/AdManager+SDK+Integration+Downloads) page.
 
@@ -11,8 +11,6 @@ The FreeWheel Plugin for Brightcove Player SDK has been integrated with version 
 You can use [CocoaPods][cocoapods] to add the FreeWheel Plugin for Brightcove Player SDK to your project. You can find the latest `Brightcove-Player-FreeWheel` podspec [here][podspecs]. To use this spec, add the following to the top of your Podfile: `source 'https://github.com/brightcove/BrightcoveSpecs.git'`.
 
 The FreeWheel SDK **is not** included in this Pod.  You **must** manually add the FreeWheel SDK AdManager.framework to your project. The Pod will, however, add all the libraries required by AdManager.framework.
-
-#### Framework example
 
 ```bash
 source 'https://github.com/CocoaPods/Specs'
@@ -23,22 +21,6 @@ use_frameworks!
 
 target 'MyVideoPlayer' do
   pod 'Brightcove-Player-FreeWheel'
-end
-```
-
-#### XCFramework example
-
-XCFrameworks can be installed by appending the `/XCFramework` subspec to the pod name.
-
-```bash
-source 'https://github.com/CocoaPods/Specs'
-source 'https://github.com/brightcove/BrightcoveSpecs.git'
-
-platform :ios, '12.0'
-use_frameworks!
-
-target 'MyVideoPlayer' do
-  pod 'Brightcove-Player-FreeWheel/XCFramework'
 end
 ```
 
